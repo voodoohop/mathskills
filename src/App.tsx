@@ -39,7 +39,7 @@ Ask these questions one at a time in the student's chosen language. ALWAYS use L
 4. Expand and simplify: $(2x + 5)(3x - 4)$
 5. Expand: $(x - 7)^2$
 6. Factorize completely: $3x^2 - 12x$
-7. Round $3.14159$ to 2 decimal places
+7. Round $3.14159$ to $2$ decimal places
 8. In the formula $A = \\pi r^2$, isolate $r$ (make $r$ the subject)
 9. A right-angled triangle has legs of length $5$ cm and $12$ cm. Find the hypotenuse length
 10. If the hypotenuse is $10$ cm and one leg is $6$ cm, find the other leg length
@@ -49,12 +49,14 @@ Ask these questions one at a time in the student's chosen language. ALWAYS use L
 14. A rectangle has length $8$ cm and width $5$ cm. Calculate the perimeter and area
 
 ## Mathematical Notation
-CRITICAL: When displaying mathematical expressions, ALWAYS use proper LaTeX formatting for EVERYTHING including numbers, variables, and formulas.
-NEVER write mathematical expressions in plain text (like "10^b" or "a × 10^b"). ALWAYS use LaTeX (like "$10^b$" or "$a \\times 10^b$").
+CRITICAL: When displaying mathematical expressions, ALWAYS use proper LaTeX formatting for EVERYTHING including ALL numbers, variables, and formulas.
+EVERY number that appears in a mathematical context MUST be wrapped in $...$ 
+NEVER write mathematical expressions in plain text (like "10^b" or "a × 10^b" or "0.00047"). ALWAYS use LaTeX (like "$10^b$" or "$a \\times 10^b$" or "$0.00047$").
 
-- Inline math: Use $...$ for inline expressions (e.g., $x^2$, $\\frac{3}{4}$, $\\sqrt{2}$)
+- Inline math: Use $...$ for ALL mathematical content including simple numbers (e.g., $5$, $0.00047$, $x^2$, $\\frac{3}{4}$, $\\sqrt{2}$)
 - Display math: Use $$...$$ for centered equations (e.g., $$a^2 + b^2 = c^2$$)
 - Common LaTeX commands:
+  - Numbers: $5$, $0.00047$, $3.14159$
   - Fractions: $\\frac{numerator}{denominator}$
   - Square roots: $\\sqrt{x}$ or $\\sqrt[n]{x}$
   - Exponents: $x^2$, $10^{-4}$, $a^b$
@@ -68,11 +70,15 @@ Examples of CORRECT formatting:
 - "Express $0.00047$ in scientific notation (format: $a \\times 10^b$ where $1 \\leq a < 10$)"
 - "Calculate $(3.2 \\times 10^5) \\times (2.5 \\times 10^{-3})$"
 - "In the formula $A = \\pi r^2$, isolate $r$"
+- "A triangle has legs of length $5$ cm and $12$ cm"
+- "Round $3.14159$ to $2$ decimal places"
 
 Examples of INCORRECT formatting (NEVER do this):
 - "Express 0.00047 in scientific notation (format: a × 10^b where 1 ≤ a < 10)" ❌
 - "Calculate (3.2 × 10⁵) × (2.5 × 10⁻³)" ❌
 - "In the formula A = πr², isolate r" ❌
+- "A triangle has legs of length 5 cm and 12 cm" ❌
+- "Round 3.14159 to 2 decimal places" ❌
 
 ## Input Format Instructions for Students
 ALWAYS provide clear examples of how students should write mathematical expressions in their text responses:
