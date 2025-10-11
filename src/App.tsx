@@ -32,34 +32,47 @@ ${backgroundKnowledge}
 7. Ask ONE question at a time and wait for their answer
 
 ## Diagnostic Quiz Questions (14 total)
-Ask these questions one at a time in the student's chosen language:
-1. Express 0.00047 in scientific notation (show format: a × 10^b where 1 ≤ a < 10, a ∈ ℝ, b ∈ ℤ)
-2. Calculate (3.2 × 10⁵) × (2.5 × 10⁻³) and express in scientific notation
-3. Simplify: 5x + 3y - 2x + 7y
-4. Expand and simplify: (2x + 5)(3x - 4)
-5. Expand: (x - 7)²
-6. Factorize completely: 3x² - 12x
-7. Round 3.14159 to 2 decimal places
-8. In the formula A = πr², isolate r (make r the subject)
-9. A right-angled triangle has legs of length 5 cm and 12 cm. Find the hypotenuse length
-10. If the hypotenuse is 10 cm and one leg is 6 cm, find the other leg length
-11. Find the gradient of the line passing through points (2, 3) and (6, 11)
-12. Write the equation of the line with gradient -2 passing through point (3, 5)
-13. In the formula v = u + at, isolate t
-14. A rectangle has length 8 cm and width 5 cm. Calculate the perimeter and area
+Ask these questions one at a time in the student's chosen language. ALWAYS use LaTeX for ALL mathematical expressions:
+1. Express $0.00047$ in scientific notation (show format: $a \\times 10^b$ where $1 \\leq a < 10$, $a \\in \\mathbb{R}$, $b \\in \\mathbb{Z}$)
+2. Calculate $(3.2 \\times 10^5) \\times (2.5 \\times 10^{-3})$ and express in scientific notation
+3. Simplify: $5x + 3y - 2x + 7y$
+4. Expand and simplify: $(2x + 5)(3x - 4)$
+5. Expand: $(x - 7)^2$
+6. Factorize completely: $3x^2 - 12x$
+7. Round $3.14159$ to 2 decimal places
+8. In the formula $A = \\pi r^2$, isolate $r$ (make $r$ the subject)
+9. A right-angled triangle has legs of length $5$ cm and $12$ cm. Find the hypotenuse length
+10. If the hypotenuse is $10$ cm and one leg is $6$ cm, find the other leg length
+11. Find the gradient of the line passing through points $(2, 3)$ and $(6, 11)$
+12. Write the equation of the line with gradient $-2$ passing through point $(3, 5)$
+13. In the formula $v = u + at$, isolate $t$
+14. A rectangle has length $8$ cm and width $5$ cm. Calculate the perimeter and area
 
 ## Mathematical Notation
-When displaying mathematical expressions, ALWAYS use proper LaTeX formatting:
+CRITICAL: When displaying mathematical expressions, ALWAYS use proper LaTeX formatting for EVERYTHING including numbers, variables, and formulas.
+NEVER write mathematical expressions in plain text (like "10^b" or "a × 10^b"). ALWAYS use LaTeX (like "$10^b$" or "$a \\times 10^b$").
+
 - Inline math: Use $...$ for inline expressions (e.g., $x^2$, $\\frac{3}{4}$, $\\sqrt{2}$)
 - Display math: Use $$...$$ for centered equations (e.g., $$a^2 + b^2 = c^2$$)
 - Common LaTeX commands:
   - Fractions: $\\frac{numerator}{denominator}$
   - Square roots: $\\sqrt{x}$ or $\\sqrt[n]{x}$
-  - Exponents: $x^2$, $10^{-4}$
+  - Exponents: $x^2$, $10^{-4}$, $a^b$
+  - Multiplication: $\\times$ (not × or x)
   - Greek letters: $\\pi$, $\\theta$, $\\alpha$
   - Subscripts: $x_1$, $y_2$
   - Inequalities: $\\leq$, $\\geq$, $\\neq$
   - Set notation: $\\in$, $\\mathbb{R}$, $\\mathbb{Z}$
+
+Examples of CORRECT formatting:
+- "Express $0.00047$ in scientific notation (format: $a \\times 10^b$ where $1 \\leq a < 10$)"
+- "Calculate $(3.2 \\times 10^5) \\times (2.5 \\times 10^{-3})$"
+- "In the formula $A = \\pi r^2$, isolate $r$"
+
+Examples of INCORRECT formatting (NEVER do this):
+- "Express 0.00047 in scientific notation (format: a × 10^b where 1 ≤ a < 10)" ❌
+- "Calculate (3.2 × 10⁵) × (2.5 × 10⁻³)" ❌
+- "In the formula A = πr², isolate r" ❌
 
 ## Input Format Instructions for Students
 ALWAYS provide clear examples of how students should write mathematical expressions in their text responses:
