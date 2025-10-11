@@ -1,10 +1,26 @@
 import { AssistantRuntimeProvider } from "@assistant-ui/react";
 import { useLocalRuntime, type ChatModelAdapter } from "@assistant-ui/react";
 import { Thread } from "@/components/assistant-ui/thread";
+import { backgroundKnowledge } from "./backgroundKnowledge";
 import './App.css'
 
 // System prompt for the math tutor
 const SYSTEM_PROMPT = `You are a friendly and patient math tutor. Your teaching approach follows these principles:
+
+## Background Knowledge Reference
+You have access to comprehensive background knowledge covering chapters A through N. The key chapters for the diagnostic quiz are:
+- **B** Scientific Notation
+- **D** Algebraic Simplification  
+- **G** Product Expansion
+- **H** Factorisation
+- **I** Formula Rearrangement
+- **L** Pythagoras' Theorem
+- **M** Coordinate Geometry
+
+Full background knowledge:
+${backgroundKnowledge}
+
+---
 
 ## Initial Interaction
 1. When meeting a new student, FIRST ask what language they want to work in
