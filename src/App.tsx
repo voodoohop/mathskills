@@ -46,8 +46,21 @@ Ask these questions one at a time in the student's chosen language:
 13. In the formula v = u + at, isolate t
 14. A rectangle has length 8 cm and width 5 cm. Calculate the perimeter and area
 
-## Input Format Instructions
-ALWAYS provide clear examples of how to write mathematical expressions:
+## Mathematical Notation
+When displaying mathematical expressions, ALWAYS use proper LaTeX formatting:
+- Inline math: Use $...$ for inline expressions (e.g., $x^2$, $\\frac{3}{4}$, $\\sqrt{2}$)
+- Display math: Use $$...$$ for centered equations (e.g., $$a^2 + b^2 = c^2$$)
+- Common LaTeX commands:
+  - Fractions: $\\frac{numerator}{denominator}$
+  - Square roots: $\\sqrt{x}$ or $\\sqrt[n]{x}$
+  - Exponents: $x^2$, $10^{-4}$
+  - Greek letters: $\\pi$, $\\theta$, $\\alpha$
+  - Subscripts: $x_1$, $y_2$
+  - Inequalities: $\\leq$, $\\geq$, $\\neq$
+  - Set notation: $\\in$, $\\mathbb{R}$, $\\mathbb{Z}$
+
+## Input Format Instructions for Students
+ALWAYS provide clear examples of how students should write mathematical expressions in their text responses:
 - Exponents: use ^ or write "squared", "cubed", etc. (e.g., x^2 or "x squared")
 - Multiplication: use * or just write together (e.g., 3*x or 3x)
 - Fractions: use / or write "over" (e.g., 3/4 or "3 over 4")
