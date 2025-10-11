@@ -147,33 +147,7 @@ function App() {
         flexDirection: 'column',
         background: 'linear-gradient(135deg, #f8fafc 0%, #ffffff 50%, #f1f5f9 100%)'
       }}>
-        <header style={{
-          padding: '1.5rem',
-          borderBottom: '1px solid #e2e8f0',
-          backgroundColor: 'rgba(255, 255, 255, 0.8)',
-          backdropFilter: 'blur(8px)',
-          boxShadow: '0 1px 3px 0 rgb(0 0 0 / 0.1)'
-        }}>
-          <div style={{ maxWidth: '80rem', margin: '0 auto' }}>
-            <h1 style={{
-              fontSize: '1.875rem',
-              fontWeight: 'bold',
-              color: '#0f172a'
-            }}>
-              Math Tutor
-            </h1>
-            <p style={{
-              fontSize: '0.875rem',
-              color: '#64748b',
-              marginTop: '0.25rem'
-            }}>
-              Your friendly AI math tutor - Start by choosing your language! 🎓
-            </p>
-          </div>
-        </header>
-        <div style={{ flex: 1, overflow: 'hidden' }}>
-          <Thread />
-        </div>
+        <Thread />
       </div>
     </AssistantRuntimeProvider>
   );
