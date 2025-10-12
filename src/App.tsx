@@ -123,16 +123,16 @@ Remember: You're not just testing knowledge, you're building confidence and unde
 // Direct Pollinations API call - no backend needed
 const pollinationsAdapter: ChatModelAdapter = {
   async run({ messages, abortSignal }) {
-    // Add system prompt as the first message if not already present
-    const messagesWithSystem = messages[0]?.role === "system" 
-      ? messages 
-      : [{ role: "system" as const, content: [{ type: "text" as const, text: SYSTEM_PROMPT }] }, ...messages];
+    const requestId = `req_${Date.now()}_${Math.random().toString(36).substr(2, 9)}`;
+    const startTime = Date.now();
+    
+    try {
+      // Add system prompt as the first message if not already present
+      const messagesWithSystem = messages[0]?.role === "system" 
+        ? messages 
+        : [{ role: "system" as const, content: [{ type: "text" as const, text: SYSTEM_PROMPT }] }, ...messages];
 
-    const response = await fetch("https://text.pollinations.ai/openai", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      signal: abortSignal,
-      body: JSON.stringify({
+      const requestBody = {
         model: "geminisearch",
         referrer: "pppp",
         messages: messagesWithSystem.map(msg => ({
@@ -142,15 +142,95 @@ const pollinationsAdapter: ChatModelAdapter = {
             .map(part => part.text)
             .join(""),
         })),
-      }),
-    });
+      };
 
-    const data = await response.json();
-    const text = data.choices[0].message.content;
+      const bodyString = JSON.stringify(requestBody);
+      const firstContent = messagesWithSystem[0]?.content[0];
+      const firstPreview = firstContent && 'text' in firstContent 
+        ? firstContent.text.substring(0, 100) + "..." 
+        : "N/A";
+      
+      console.log(`[${requestId}] 🚀 Starting request`, {
+        timestamp: new Date().toISOString(),
+        messageCount: messagesWithSystem.length,
+        bodySize: bodyString.length,
+        firstMessagePreview: firstPreview,
+      });
 
-    return {
-      content: [{ type: "text", text }],
-    };
+      const response = await fetch("https://text.pollinations.ai/openai", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        signal: abortSignal,
+        body: bodyString,
+      });
+
+      const fetchTime = Date.now() - startTime;
+      console.log(`[${requestId}] 📡 Response received (${fetchTime}ms)`, {
+        status: response.status,
+        statusText: response.statusText,
+        ok: response.ok,
+        headers: {
+          contentType: response.headers.get("content-type"),
+          contentLength: response.headers.get("content-length"),
+          cors: response.headers.get("access-control-allow-origin"),
+        },
+      });
+
+      if (!response.ok) {
+        const errorText = await response.text();
+        console.error(`[${requestId}] ❌ Response not OK`, {
+          status: response.status,
+          statusText: response.statusText,
+          body: errorText,
+        });
+        throw new Error(`HTTP ${response.status}: ${errorText}`);
+      }
+
+      console.log(`[${requestId}] 📝 Parsing JSON...`);
+      const data = await response.json();
+      const parseTime = Date.now() - startTime;
+      
+      console.log(`[${requestId}] ✅ Success (${parseTime}ms total)`, {
+        hasChoices: !!data.choices,
+        choicesLength: data.choices?.length,
+        hasError: !!data.error,
+        responsePreview: data.choices?.[0]?.message?.content?.substring(0, 100) + "...",
+      });
+
+      const text = data.choices[0].message.content;
+
+      return {
+        content: [{ type: "text", text }],
+      };
+    } catch (error) {
+      const errorTime = Date.now() - startTime;
+      
+      if (error instanceof Error) {
+        if (error.name === "AbortError") {
+          console.warn(`[${requestId}] ⚠️ Request aborted (${errorTime}ms)`, error);
+        } else if (error.message.includes("JSON")) {
+          console.error(`[${requestId}] ❌ JSON Parse Error (${errorTime}ms)`, {
+            error: error.message,
+            stack: error.stack,
+          });
+        } else if (error.message.includes("NetworkError") || error.message.includes("Failed to fetch")) {
+          console.error(`[${requestId}] ❌ Network Error (${errorTime}ms)`, {
+            error: error.message,
+            stack: error.stack,
+          });
+        } else {
+          console.error(`[${requestId}] ❌ Unknown Error (${errorTime}ms)`, {
+            name: error.name,
+            message: error.message,
+            stack: error.stack,
+          });
+        }
+      } else {
+        console.error(`[${requestId}] ❌ Non-Error thrown (${errorTime}ms)`, error);
+      }
+      
+      throw error;
+    }
   },
 };
 
