@@ -161,7 +161,6 @@ function App() {
     <AssistantRuntimeProvider runtime={runtime}>
       <div style={{
         height: '100vh',
-        width: '100vw',
         display: 'flex',
         flexDirection: 'column',
         background: 'linear-gradient(135deg, #f8fafc 0%, #ffffff 50%, #f1f5f9 100%)'
