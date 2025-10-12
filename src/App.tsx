@@ -159,7 +159,11 @@ const pollinationsAdapter: ChatModelAdapter = {
 
       const response = await fetch("https://text.pollinations.ai/openai", {
         method: "POST",
-        headers: { "Content-Type": "application/json" },
+        headers: { 
+          "Content-Type": "application/json",
+          "Cache-Control": "no-cache, no-store, must-revalidate",
+          "Pragma": "no-cache"
+        },
         signal: abortSignal,
         body: bodyString,
       });
