@@ -1,7 +1,8 @@
 import { AssistantRuntimeProvider } from "@assistant-ui/react";
 import { useLocalRuntime, type ChatModelAdapter } from "@assistant-ui/react";
 import { Thread } from "@/components/assistant-ui/thread";
-import { SYSTEM_PROMPT } from "@/content/systemPrompt";
+import { buildSystemPrompt } from "@/content/systemPrompt";
+import { PromptConfig } from "@/components/PromptConfig";
 import './App.css'
 
 // Direct Pollinations API call - no backend needed
@@ -11,10 +12,19 @@ const pollinationsAdapter: ChatModelAdapter = {
     const startTime = Date.now();
     
     try {
-      // Add system prompt as the first message if not already present
-      const messagesWithSystem = messages[0]?.role === "system" 
-        ? messages 
-        : [{ role: "system" as const, content: [{ type: "text" as const, text: SYSTEM_PROMPT }] }, ...messages];
+      // Always use the current system prompt from localStorage (to pick up any edits)
+      const currentPrompt = buildSystemPrompt();
+      
+      console.log(`[${requestId}] 📋 System prompt preview:`, currentPrompt.substring(0, 200) + "...");
+      
+      // Remove any existing system message and add the current one
+      const userMessages = messages.filter(msg => msg.role !== "system");
+      const messagesWithSystem = [
+        { role: "system" as const, content: [{ type: "text" as const, text: currentPrompt }] },
+        ...userMessages
+      ];
+      
+      console.log(`[${requestId}] 📨 Message count: ${messagesWithSystem.length} (${userMessages.length} user messages)`);
 
       const requestBody = {
         model: "claudyclaude",
@@ -108,6 +118,7 @@ function App() {
         flexDirection: 'column',
         background: 'linear-gradient(135deg, #f8fafc 0%, #ffffff 50%, #f1f5f9 100%)'
       }}>
+        <PromptConfig />
         <Thread />
       </div>
     </AssistantRuntimeProvider>

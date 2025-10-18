@@ -1,4 +1,4 @@
-export const threadSuggestions = [
+const DEFAULT_SUGGESTIONS = [
   {
     title: "Start the diagnostic quiz",
     label: "to assess my math skills",
@@ -19,9 +19,29 @@ export const threadSuggestions = [
     label: "to significant figures",
     action: "I want to practice rounding",
   },
-  // {
-  //   title: "🐛 DEBUG MODE",
-  //   label: "render a test triangle",
-  //   action: "DEBUG MODE: Do NOT ask any questions. Immediately render a simple right triangle with vertices at (0,0), (3,0), and (0,4) labeled A, B, C using a jsxgraph code fence with JessieCode.",
-  // },
 ];
+
+function getSuggestions() {
+  if (typeof window === 'undefined') {
+    return DEFAULT_SUGGESTIONS;
+  }
+  
+  const saved = localStorage.getItem('mathskills_suggestions');
+  if (!saved) {
+    return DEFAULT_SUGGESTIONS;
+  }
+  
+  try {
+    const custom = JSON.parse(saved);
+    // Add label field (derived from title for display)
+    return custom.map((s: any) => ({
+      title: s.title,
+      label: s.title.toLowerCase().replace(/^[a-z]/, (c: string) => c.toLowerCase()),
+      action: s.action,
+    }));
+  } catch {
+    return DEFAULT_SUGGESTIONS;
+  }
+}
+
+export const threadSuggestions = getSuggestions();

@@ -107,7 +107,7 @@ const ThreadWelcome: FC = () => {
 const ThreadSuggestions: FC = () => {
   return (
     <div className="aui-thread-welcome-suggestions grid w-full gap-2 pb-4 @md:grid-cols-2">
-      {threadSuggestions.map((suggestedAction, index) => (
+      {threadSuggestions.map((suggestedAction: { title: string; label: string; action: string }, index: number) => (
         <m.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
@@ -133,9 +133,6 @@ const ThreadSuggestions: FC = () => {
             >
               <span className="aui-thread-welcome-suggestion-text-1 font-semibold" style={{ color: '#0f172a' }}>
                 {suggestedAction.title}
-              </span>
-              <span className="aui-thread-welcome-suggestion-text-2" style={{ color: '#64748b' }}>
-                {suggestedAction.label}
               </span>
             </Button>
           </ThreadPrimitive.Suggestion>

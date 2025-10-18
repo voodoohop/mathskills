@@ -14,6 +14,10 @@ import remarkMath from "remark-math";
 import rehypeKatex from "rehype-katex";
 import { remarkJSXGraphPlugin } from "@/lib/remark-jsxgraph";
 import { rehypeJSXGraphPlugin } from "@/lib/rehype-jsxgraph";
+import remarkDirective from "remark-directive";
+import remarkGithubBlockquoteAlert from "remark-github-blockquote-alert";
+import remarkFlexibleMarkers from "remark-flexible-markers";
+import remarkDefinitionList from "remark-definition-list";
 import { type FC, memo, useState } from "react";
 import { CheckIcon, CopyIcon } from "lucide-react";
 
@@ -21,6 +25,7 @@ import { TooltipIconButton } from "@/components/assistant-ui/tooltip-icon-button
 import { cn } from "@/lib/utils";
 import rehypeRaw from "rehype-raw";
 import { JSXGraphBoard } from "@/components/jsxgraph";
+import { rehypeDirectiveContainers } from "@/lib/rehype-directive-containers";
 
 // Preprocess function to normalize LaTeX delimiters
 function normalizeCustomMathTags(input: string): string {
@@ -36,10 +41,18 @@ function normalizeCustomMathTags(input: string): string {
 const MarkdownTextImpl = () => {
   return (
     <MarkdownTextPrimitive
-      remarkPlugins={[remarkGfm, remarkMath, remarkJSXGraphPlugin]}
-      rehypePlugins={[rehypeRaw, rehypeJSXGraphPlugin, rehypeKatex]}
+      remarkPlugins={[
+        remarkGfm,
+        remarkMath,
+        remarkDirective,
+        remarkGithubBlockquoteAlert,
+        remarkFlexibleMarkers,
+        remarkDefinitionList,
+        remarkJSXGraphPlugin,
+      ]}
+      rehypePlugins={[rehypeRaw, rehypeDirectiveContainers, rehypeJSXGraphPlugin, rehypeKatex]}
       preprocess={normalizeCustomMathTags}
-      className="aui-md"
+      className="aui-md text-left"
       components={defaultComponents}
     />
   );
