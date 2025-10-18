@@ -21,10 +21,7 @@ const pollinationsAdapter: ChatModelAdapter = {
         referrer: "pppp",
         messages: messagesWithSystem.map(msg => ({
           role: msg.role,
-          content: msg.content
-            .filter(part => part.type === "text")
-            .map(part => part.text)
-            .join(""),
+          content: msg.content[0]?.type === "text" ? msg.content[0].text : "",
         })),
       };
 
