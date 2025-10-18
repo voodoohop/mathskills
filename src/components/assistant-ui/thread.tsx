@@ -22,6 +22,7 @@ import { Button } from "@/components/ui/button";
 import { MarkdownText } from "@/components/assistant-ui/markdown-text";
 import { ToolFallback } from "@/components/assistant-ui/tool-fallback";
 import { TooltipIconButton } from "@/components/assistant-ui/tooltip-icon-button";
+import { threadSuggestions } from "@/content/suggestions";
 
 import { cn } from "@/lib/utils";
 
@@ -106,28 +107,7 @@ const ThreadWelcome: FC = () => {
 const ThreadSuggestions: FC = () => {
   return (
     <div className="aui-thread-welcome-suggestions grid w-full gap-2 pb-4 @md:grid-cols-2">
-      {[
-        {
-          title: "Start the diagnostic quiz",
-          label: "to assess my math skills",
-          action: "I'm ready to start!",
-        },
-        {
-          title: "Help me with algebra",
-          label: "simplification and equations",
-          action: "Can you help me with algebra?",
-        },
-        {
-          title: "Explain Pythagoras",
-          label: "theorem with examples",
-          action: "Explain Pythagoras' theorem",
-        },
-        {
-          title: "Practice rounding",
-          label: "to significant figures",
-          action: "I want to practice rounding",
-        },
-      ].map((suggestedAction, index) => (
+      {threadSuggestions.map((suggestedAction, index) => (
         <m.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}

@@ -1,7 +1,7 @@
 import { AssistantRuntimeProvider } from "@assistant-ui/react";
 import { useLocalRuntime, type ChatModelAdapter } from "@assistant-ui/react";
 import { Thread } from "@/components/assistant-ui/thread";
-import { SYSTEM_PROMPT } from "./systemPrompt";
+import { SYSTEM_PROMPT } from "@/content/systemPrompt";
 import './App.css'
 
 // Direct Pollinations API call - no backend needed
@@ -17,7 +17,7 @@ const pollinationsAdapter: ChatModelAdapter = {
         : [{ role: "system" as const, content: [{ type: "text" as const, text: SYSTEM_PROMPT }] }, ...messages];
 
       const requestBody = {
-        model: "gemini",
+        model: "claudyclaude",
         referrer: "pppp",
         messages: messagesWithSystem.map(msg => ({
           role: msg.role,

@@ -1,0 +1,1 @@
+export { JSXGraphBoard } from './JSXGraphBoard';

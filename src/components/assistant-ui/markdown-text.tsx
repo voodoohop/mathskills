@@ -12,12 +12,15 @@ import {
 import remarkGfm from "remark-gfm";
 import remarkMath from "remark-math";
 import rehypeKatex from "rehype-katex";
+import { remarkJSXGraphPlugin } from "@/lib/remark-jsxgraph";
+import { rehypeJSXGraphPlugin } from "@/lib/rehype-jsxgraph";
 import { type FC, memo, useState } from "react";
 import { CheckIcon, CopyIcon } from "lucide-react";
 
 import { TooltipIconButton } from "@/components/assistant-ui/tooltip-icon-button";
 import { cn } from "@/lib/utils";
 import rehypeRaw from "rehype-raw";
+import { JSXGraphBoard } from "@/components/jsxgraph";
 
 // Preprocess function to normalize LaTeX delimiters
 function normalizeCustomMathTags(input: string): string {
@@ -33,8 +36,8 @@ function normalizeCustomMathTags(input: string): string {
 const MarkdownTextImpl = () => {
   return (
     <MarkdownTextPrimitive
-      remarkPlugins={[remarkGfm, remarkMath]}
-      rehypePlugins={[rehypeRaw, rehypeKatex]}
+      remarkPlugins={[remarkGfm, remarkMath, remarkJSXGraphPlugin]}
+      rehypePlugins={[rehypeRaw, rehypeJSXGraphPlugin, rehypeKatex]}
       preprocess={normalizeCustomMathTags}
       className="aui-md"
       components={defaultComponents}
@@ -84,6 +87,14 @@ const useCopyToClipboard = ({
 };
 
 const defaultComponents = memoizeMarkdownComponents({
+  JSXGraphBoard: ({ code }: { code: string }) => (
+    <JSXGraphBoard code={code} />
+  ),
+  ...({
+    'jsxgraph-board': ({ code }: { code: string }) => (
+      <JSXGraphBoard code={code} />
+    ),
+  } as any),
   svg: ({ className, ...props }) => (
     <svg
       className={cn(
@@ -237,8 +248,9 @@ const defaultComponents = memoizeMarkdownComponents({
       {...props}
     />
   ),
-  code: function Code({ className, ...props }) {
+  code: function Code({ className, children, ...props }) {
     const isCodeBlock = useIsMarkdownCodeBlock();
+    
     return (
       <code
         className={cn(
@@ -247,7 +259,9 @@ const defaultComponents = memoizeMarkdownComponents({
           className,
         )}
         {...props}
-      />
+      >
+        {children}
+      </code>
     );
   },
   CodeHeader,
