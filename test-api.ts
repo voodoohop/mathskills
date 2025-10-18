@@ -3,14 +3,17 @@ import { SYSTEM_PROMPT } from "./src/systemPrompt";
 
 const testMessages = [
   { role: "system" as const, content: SYSTEM_PROMPT },
-  { role: "user" as const, content: "Explain Pythagoras theorem briefly" }
+  { role: "user" as const, content: "Hello, what is your name and what should we do first? (force cache miss)" }
 ];
 
 async function testAPI() {
   console.log("🚀 Testing Pollinations API...\n");
+  console.log("System prompt length:", SYSTEM_PROMPT.length);
+  console.log("System prompt first 300 chars:", SYSTEM_PROMPT.substring(0, 300));
+  console.log("System prompt last 300 chars:", SYSTEM_PROMPT.substring(SYSTEM_PROMPT.length - 300));
   
   const requestBody = {
-    model: "openai-large",
+    model: "gemini",
     referrer: "pppp",
     messages: testMessages.map(msg => ({
       role: msg.role,
@@ -18,12 +21,20 @@ async function testAPI() {
     })),
   };
 
-  console.log("📤 Request body:", JSON.stringify(requestBody, null, 2).substring(0, 500) + "...\n");
+  const bodyString = JSON.stringify(requestBody);
+  console.log("📤 Request body size:", bodyString.length, "bytes");
+  console.log("📤 Full request body:", bodyString.substring(0, 1000) + "...\n");
 
   try {
+    console.log("📤 Sending to: https://text-origin.pollinations.ai/openai\n");
     const response = await fetch("https://text-origin.pollinations.ai/openai", {
       method: "POST",
-      body: JSON.stringify(requestBody),
+      headers: {
+        "Content-Type": "application/json",
+        "Cache-Control": "no-cache, no-store, must-revalidate",
+        "Pragma": "no-cache"
+      },
+      body: bodyString,
     });
 
     console.log("📡 Response status:", response.status, response.statusText);

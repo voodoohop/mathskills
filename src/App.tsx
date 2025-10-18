@@ -17,11 +17,14 @@ const pollinationsAdapter: ChatModelAdapter = {
         : [{ role: "system" as const, content: [{ type: "text" as const, text: SYSTEM_PROMPT }] }, ...messages];
 
       const requestBody = {
-        model: "openai-large",
+        model: "gemini",
         referrer: "pppp",
         messages: messagesWithSystem.map(msg => ({
           role: msg.role,
-          content: msg.content[0]?.type === "text" ? msg.content[0].text : "",
+          content: msg.content
+            .filter(part => part.type === "text")
+            .map(part => part.text)
+            .join(""),
         })),
       };
 
@@ -38,8 +41,13 @@ const pollinationsAdapter: ChatModelAdapter = {
         firstMessagePreview: firstPreview,
       });
 
-      const response = await fetch("https://text-origin.pollinations.ai/openai", {
+      const response = await fetch("https://text.pollinations.ai/openai", {
         method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          "Cache-Control": "no-cache, no-store, must-revalidate",
+          "Pragma": "no-cache"
+        },
         body: bodyString,
       });
 
