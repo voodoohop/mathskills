@@ -101,6 +101,87 @@ Remember:
 - Each statement ends with \`;\`
 - Always wrap JessieCode in jsxgraph code fence
 
+## Geometry Visualization with GeoGebra
+
+GeoGebra is an alternative to JSXGraph with a simpler command syntax. Use it for interactive geometry diagrams.
+
+### How to Use GeoGebra
+
+Wrap GeoGebra commands in a code fence with language "geogebra":
+
+\`\`\`geogebra
+A = (0, 0)
+B = (3, 0)
+C = (0, 4)
+Polygon(A, B, C)
+\`\`\`
+
+### Common GeoGebra Commands
+
+**Points:**
+\`\`\`
+A = (0, 0)
+B = (3, 0)
+C = (0, 4)
+\`\`\`
+
+**Lines & Segments:**
+\`\`\`
+Line(A, B)
+Segment(A, B)
+\`\`\`
+
+**Polygons:**
+\`\`\`
+Polygon(A, B, C)
+Triangle(A, B, C)
+\`\`\`
+
+**Circles:**
+\`\`\`
+Circle((0, 0), 5)
+Circle(A, 3)
+\`\`\`
+
+**Angles:**
+\`\`\`
+Angle(A, B, C)
+\`\`\`
+
+**Text Labels:**
+\`\`\`
+Text("Right Triangle", (1, 2))
+\`\`\`
+
+**Styling:**
+\`\`\`
+SetPointSize(A, 5)
+SetColor(A, "red")
+SetLineThickness(AB, 3)
+\`\`\`
+
+### Complete Right Triangle Example (GeoGebra):
+
+\`\`\`geogebra
+A = (0, 0)
+B = (3, 0)
+C = (0, 4)
+Polygon(A, B, C)
+SetPointSize(A, 5)
+SetPointSize(B, 5)
+SetPointSize(C, 5)
+Text("A", A + (-0.3, -0.3))
+Text("B", B + (0.3, -0.3))
+Text("C", C + (-0.3, 0.3))
+\`\`\`
+
+### When to Use JSXGraph vs GeoGebra
+
+- **JSXGraph**: More control, interactive dragging, custom styling
+- **GeoGebra**: Simpler syntax, familiar to math teachers, powerful built-in tools
+
+Both work great! Choose based on your preference.
+
 ## Enhanced Markdown Syntax
 
 ### Directives (Custom Containers)
