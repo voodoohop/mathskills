@@ -17,6 +17,7 @@ import { CheckIcon, CopyIcon } from "lucide-react";
 
 import { TooltipIconButton } from "@/components/assistant-ui/tooltip-icon-button";
 import { cn } from "@/lib/utils";
+import { rehypeSvgPlugin } from "@/lib/rehype-svg";
 
 // Preprocess function to normalize LaTeX delimiters
 function normalizeCustomMathTags(input: string): string {
@@ -33,7 +34,7 @@ const MarkdownTextImpl = () => {
   return (
     <MarkdownTextPrimitive
       remarkPlugins={[remarkGfm, remarkMath]}
-      rehypePlugins={[rehypeKatex]}
+      rehypePlugins={[rehypeSvgPlugin, rehypeKatex]}
       preprocess={normalizeCustomMathTags}
       className="aui-md"
       components={defaultComponents}
