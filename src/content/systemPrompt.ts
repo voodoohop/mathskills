@@ -178,6 +178,71 @@ A = (1, 2)
 5. **NEVER use invalid commands** - only use: Polygon, Segment, Circle, Point, SetColor, SetPointSize, SetLineThickness, SetFixed
 6. **KEEP IT SIMPLE** - one shape, basic styling, no complex constructions
 
+### PRACTICAL EXAMPLES FOR MATH TOPICS
+
+**Example 1: Rectangle for Area & Perimeter**
+\`\`\`geogebra
+A = (-2, -1)
+B = (2, -1)
+C = (2, 1)
+D = (-2, 1)
+rect = Polygon(A, B, C, D)
+SetColor(rect, "lightblue")
+SetLineThickness(rect, 2)
+SetPointSize(A, 5)
+SetPointSize(B, 5)
+SetPointSize(C, 5)
+SetPointSize(D, 5)
+SetFixed(A, true)
+SetFixed(B, true)
+SetFixed(C, true)
+SetFixed(D, true)
+\`\`\`
+✅ Shows a 4×2 rectangle for calculating area (8 sq units) and perimeter (12 units)
+
+**Example 2: Coordinate Geometry - Distance Between Points**
+\`\`\`geogebra
+P = (-2, -1)
+Q = (2, 1)
+Segment(P, Q)
+SetPointSize(P, 5)
+SetPointSize(Q, 5)
+SetColor(P, "red")
+SetColor(Q, "red")
+SetLineThickness(Segment(P, Q), 2)
+SetFixed(P, true)
+SetFixed(Q, true)
+\`\`\`
+✅ Shows distance formula: distance = √((2-(-2))² + (1-(-1))²) = √20 ≈ 4.47
+
+**Example 3: Right Triangle with Perpendicular Sides**
+\`\`\`geogebra
+A = (-2, -2)
+B = (2, -2)
+C = (-2, 2)
+tri = Polygon(A, B, C)
+SetColor(tri, "lightgreen")
+SetLineThickness(tri, 2)
+SetPointSize(A, 5)
+SetPointSize(B, 5)
+SetPointSize(C, 5)
+SetFixed(A, true)
+SetFixed(B, true)
+SetFixed(C, true)
+\`\`\`
+✅ Right angle at A, legs: 4 units each, hypotenuse: √32 ≈ 5.66 units
+
+**Example 4: Circle with Radius**
+\`\`\`geogebra
+O = (0, 0)
+circ = Circle(O, 2)
+SetColor(circ, "lightyellow")
+SetLineThickness(circ, 2)
+SetPointSize(O, 5)
+SetFixed(O, true)
+\`\`\`
+✅ Circle with center O and radius 2 (area = 4π ≈ 12.57, circumference = 4π ≈ 12.57)
+
 ## Enhanced Markdown Syntax
 
 ### Directives (Custom Containers)
