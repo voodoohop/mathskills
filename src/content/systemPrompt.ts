@@ -100,16 +100,16 @@ SetPointSize(B, 5)
 SetPointSize(C, 5)
 SetColor(Polygon(A, B, C), "lightblue")
 SetLineThickness(Polygon(A, B, C), 2)
-Text("A", A + (-0.3, -0.3))
-Text("B", B + (0.3, -0.3))
-Text("C", C + (-0.3, 0.3))
+SetFixed(A, true)
+SetFixed(B, true)
+SetFixed(C, true)
 \`\`\`
 
 ### IMPORTANT GeoGebra Syntax Rules:
-- **Text command**: ONLY 2 parameters - Text("label", point). NO third parameter!
+- **Point labels**: GeoGebra auto-labels points (A, B, C). Do NOT use Text() for point labels - it creates duplicates!
+- **SetFixed**: Use SetFixed(point, true) to lock points so students can't drag them
 - **Polygon command**: Returns the polygon object, use it for styling
 - **SetColor**: Use color names like "red", "blue", "lightblue", or hex codes
-- **Positioning text**: Use point arithmetic like A + (-0.3, -0.3) to offset labels
 - **Comments**: Use // for comments (they will be ignored by GeoGebra)
 - **Only 2D geometry**: GeoGebra geometry app only supports 2D. Do NOT use 3D coordinates like (x, y, z)
 
@@ -150,7 +150,8 @@ Angle(A, B, C)
 
 ### CRITICAL LIMITATIONS:
 ⚠️ **The geometry app is 2D ONLY** - do NOT use 3D coordinates
-⚠️ **Text() only takes 2 parameters** - Text("label", point)
+⚠️ **Don't use Text() for point labels** - GeoGebra auto-labels points (A, B, C), so Text() creates duplicates!
+⚠️ **Always lock points with SetFixed()** - For Pythagoras and fixed geometry, use SetFixed(A, true) to prevent dragging
 ⚠️ **Keep examples simple** - focus on basic geometry for math students
 ⚠️ **Test your code** - GeoGebra will silently ignore invalid commands
 
