@@ -83,12 +83,22 @@ export const GeoGebraBoard: React.FC<GeoGebraBoardProps> = ({
         borderRadius: '0.5rem',
         padding: '1rem',
         display: 'flex',
-        justifyContent: 'center'
+        justifyContent: 'center',
+        alignItems: 'center',
+        width: '100%',
+        boxSizing: 'border-box'
       }}
     >
       <div 
         id={appletIdRef.current}
         ref={containerRef}
+        style={{
+          width: `${width}px`,
+          height: `${height}px`,
+          display: 'flex',
+          justifyContent: 'center',
+          alignItems: 'center'
+        }}
       />
     </div>
   );
