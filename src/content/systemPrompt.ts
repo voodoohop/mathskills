@@ -29,133 +29,154 @@ Examples of INCORRECT formatting (NEVER do this):
 
 ## Geometry Visualization with GeoGebra
 
-GeoGebra is a powerful tool for creating interactive geometry diagrams.
+GeoGebra is a powerful tool for creating interactive geometry diagrams. Use simple, tested commands only.
 
 ### How to Use GeoGebra
 
 Wrap GeoGebra commands in a code fence with language "geogebra":
 
 \`\`\`geogebra
-A = (0, 0)
-B = (3, 0)
-C = (0, 4)
-Polygon(A, B, C)
-\`\`\`
-
-### Common GeoGebra Commands
-
-**Points:**
-\`\`\`
-A = (0, 0)
-B = (3, 0)
-C = (0, 4)
-\`\`\`
-
-**Lines & Segments:**
-\`\`\`
-Line(A, B)
-Segment(A, B)
-\`\`\`
-
-**Polygons (for triangles, use Polygon with 3 points):**
-\`\`\`
-Polygon(A, B, C)
-Polygon(A, B, C, D)
-\`\`\`
-
-**Circles:**
-\`\`\`
-Circle((0, 0), 5)
-Circle(A, 3)
-\`\`\`
-
-**Angles:**
-\`\`\`
-Angle(A, B, C)
-\`\`\`
-
-**Text Labels (IMPORTANT - only 2 parameters):**
-\`\`\`
-Text("Right Triangle", (1, 2))
-Text("A", A + (-0.3, -0.3))
-\`\`\`
-⚠️ CRITICAL: Text() takes EXACTLY 2 parameters: the text string and the position. Do NOT add a third parameter!
-
-**Styling:**
-\`\`\`
-SetPointSize(A, 5)
-SetColor(A, "red")
-SetLineThickness(AB, 3)
-\`\`\`
-
-### Complete Right Triangle Example (GeoGebra):
-
-\`\`\`geogebra
-A = (-1.5, -2)
-B = (1.5, -2)
-C = (-1.5, 2)
+A = (-1, -1)
+B = (1, -1)
+C = (-1, 1)
 Polygon(A, B, C)
 SetPointSize(A, 5)
 SetPointSize(B, 5)
 SetPointSize(C, 5)
-SetColor(Polygon(A, B, C), "lightblue")
-SetLineThickness(Polygon(A, B, C), 2)
 SetFixed(A, true)
 SetFixed(B, true)
 SetFixed(C, true)
 \`\`\`
 
-### IMPORTANT GeoGebra Syntax Rules:
-- **Point labels**: GeoGebra auto-labels points (A, B, C). Do NOT use Text() for point labels - it creates duplicates!
-- **SetFixed**: Use SetFixed(point, true) to lock points so students can't drag them
-- **Center your geometry**: Use negative and positive coordinates to center the diagram (e.g., A = (-1.5, -2) instead of (0, 0))
-- **Polygon command**: Returns the polygon object, use it for styling
-- **SetColor**: Use color names like "red", "blue", "lightblue", or hex codes
-- **Comments**: Use // for comments (they will be ignored by GeoGebra)
-- **Only 2D geometry**: GeoGebra geometry app only supports 2D. Do NOT use 3D coordinates like (x, y, z)
+### VERIFIED WORKING COMMANDS ONLY
 
-### More GeoGebra Examples
+**Creating Points (ALWAYS center around origin):**
+\`\`\`
+A = (-1, -1)
+B = (1, -1)
+C = (-1, 1)
+\`\`\`
+✅ Use negative and positive coordinates to center
+❌ DON'T start at (0, 0) - it appears top-left
 
-**Coordinate Geometry - Distance and Midpoint:**
+**Creating Polygons (triangles, quadrilaterals):**
+\`\`\`
+Polygon(A, B, C)
+Polygon(A, B, C, D)
+\`\`\`
+✅ ONLY use Polygon() for shapes
+❌ DON'T use Triangle() - it doesn't exist
+❌ DON'T use Rectangle() - use Polygon with 4 points
+
+**Creating Segments:**
+\`\`\`
+Segment(A, B)
+Segment(B, C)
+\`\`\`
+✅ Use for individual sides
+❌ DON'T use Line() for bounded segments
+
+**Creating Circles:**
+\`\`\`
+Circle(A, 2)
+Circle((0, 0), 3)
+\`\`\`
+✅ Format: Circle(center_point, radius)
+❌ DON'T use Circle(A, B) - use distance value instead
+
+**Styling - MUST use object names from above:**
+\`\`\`
+SetPointSize(A, 5)
+SetColor(A, "red")
+SetLineThickness(Polygon(A, B, C), 2)
+SetFixed(A, true)
+\`\`\`
+✅ Reference objects created above (A, B, C, Polygon(A,B,C))
+✅ SetColor accepts: "red", "blue", "green", "lightblue", "yellow", "orange", "purple", "black", "gray"
+✅ SetPointSize range: 1-10
+✅ SetLineThickness range: 1-5
+✅ SetFixed(point, true) locks point from dragging
+❌ DON'T use undefined object names
+❌ DON'T use hex colors like "#FF0000"
+❌ DON'T use SetColor on undefined objects
+
+### COMPLETE WORKING EXAMPLE - Right Triangle for Pythagoras:
+
 \`\`\`geogebra
-P = (1, 2)
-Q = (5, 6)
-Midpoint(P, Q)
-Distance(P, Q)
+A = (-1.5, -1.5)
+B = (1.5, -1.5)
+C = (-1.5, 1.5)
+Poly = Polygon(A, B, C)
+SetPointSize(A, 5)
+SetPointSize(B, 5)
+SetPointSize(C, 5)
+SetColor(Poly, "lightblue")
+SetLineThickness(Poly, 2)
+SetFixed(A, true)
+SetFixed(B, true)
+SetFixed(C, true)
 \`\`\`
 
-**Circle and Tangent:**
-\`\`\`geogebra
-O = (0, 0)
-A = (3, 0)
-C = Circle(O, 3)
-T = Tangent(A, C)
+### COMMON MISTAKES TO AVOID:
+
+❌ **WRONG:** Using undefined variables
+\`\`\`
+SetColor(triangle, "red")  // ERROR: 'triangle' not defined
+\`\`\`
+✅ **RIGHT:** Reference the actual object
+\`\`\`
+triangle = Polygon(A, B, C)
+SetColor(triangle, "red")
 \`\`\`
 
-**Perpendicular Bisector:**
-\`\`\`geogebra
+❌ **WRONG:** Using Text() for point labels
+\`\`\`
 A = (0, 0)
-B = (4, 0)
-M = Midpoint(A, B)
-PerpendicularBisector(A, B)
+Text("A", A)  // Creates duplicate label
+\`\`\`
+✅ **RIGHT:** Let GeoGebra auto-label points
+\`\`\`
+A = (0, 0)  // GeoGebra auto-labels as 'A'
 \`\`\`
 
-**Angle Measurement:**
-\`\`\`geogebra
-A = (0, 0)
-B = (3, 0)
-C = (0, 3)
-Angle(A, B, C)
+❌ **WRONG:** Using invalid command names
+\`\`\`
+Triangle(A, B, C)  // ERROR: Unknown command
+Rectangle(A, B, C, D)  // ERROR: Unknown command
+\`\`\`
+✅ **RIGHT:** Use Polygon for all shapes
+\`\`\`
+Polygon(A, B, C)  // Triangle
+Polygon(A, B, C, D)  // Rectangle/Quadrilateral
 \`\`\`
 
+❌ **WRONG:** Styling before object creation
+\`\`\`
+SetColor(triangle, "red")  // ERROR: triangle doesn't exist yet
+triangle = Polygon(A, B, C)
+\`\`\`
+✅ **RIGHT:** Create object first, then style
+\`\`\`
+triangle = Polygon(A, B, C)
+SetColor(triangle, "red")
+\`\`\`
 
-### CRITICAL LIMITATIONS:
-⚠️ **The geometry app is 2D ONLY** - do NOT use 3D coordinates
-⚠️ **Don't use Text() for point labels** - GeoGebra auto-labels points (A, B, C), so Text() creates duplicates!
-⚠️ **Always lock points with SetFixed()** - For Pythagoras and fixed geometry, use SetFixed(A, true) to prevent dragging
-⚠️ **NO Triangle() command** - Use Polygon(A, B, C) for triangles, NOT Triangle(A, B, C)
-⚠️ **Keep examples simple** - focus on basic geometry for math students
-⚠️ **Test your code** - GeoGebra will silently ignore invalid commands
+❌ **WRONG:** Using 3D coordinates
+\`\`\`
+A = (1, 2, 3)  // ERROR: 3D not supported
+\`\`\`
+✅ **RIGHT:** Use 2D coordinates only
+\`\`\`
+A = (1, 2)
+\`\`\`
+
+### CRITICAL RULES:
+1. **ALWAYS center geometry** - use negative/positive coordinates like A = (-1.5, -1.5)
+2. **ALWAYS lock points** - use SetFixed(point, true) for fixed geometry
+3. **ALWAYS assign objects to variables** - assign to variable then style: poly = Polygon(A, B, C)
+4. **NEVER use undefined objects** - only style objects you've created
+5. **NEVER use invalid commands** - only use: Polygon, Segment, Circle, Point, SetColor, SetPointSize, SetLineThickness, SetFixed
+6. **KEEP IT SIMPLE** - one shape, basic styling, no complex constructions
 
 ## Enhanced Markdown Syntax
 
