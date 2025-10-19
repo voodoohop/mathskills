@@ -133,8 +133,8 @@ function App() {
           backgroundColor: 'rgba(255, 255, 255, 0.8)',
           backdropFilter: 'blur(10px)'
         }}>
-          <PromptConfig />
           <NewConversationButton />
+          <PromptConfig />
         </div>
         <Thread />
       </div>

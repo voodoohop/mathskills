@@ -43,6 +43,7 @@ export function PromptConfig() {
       <PrimaryButton
         onClick={() => setIsOpen(true)}
         ariaLabel="Edit tutoring protocol"
+        variant="secondary"
       >
         <span style={{ fontSize: '1rem' }}>⚙️</span>
         Edit Protocol
