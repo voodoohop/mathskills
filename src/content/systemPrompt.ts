@@ -91,9 +91,9 @@ SetLineThickness(AB, 3)
 ### Complete Right Triangle Example (GeoGebra):
 
 \`\`\`geogebra
-A = (0, 0)
-B = (3, 0)
-C = (0, 4)
+A = (-1.5, -2)
+B = (1.5, -2)
+C = (-1.5, 2)
 Polygon(A, B, C)
 SetPointSize(A, 5)
 SetPointSize(B, 5)
@@ -108,6 +108,7 @@ SetFixed(C, true)
 ### IMPORTANT GeoGebra Syntax Rules:
 - **Point labels**: GeoGebra auto-labels points (A, B, C). Do NOT use Text() for point labels - it creates duplicates!
 - **SetFixed**: Use SetFixed(point, true) to lock points so students can't drag them
+- **Center your geometry**: Use negative and positive coordinates to center the diagram (e.g., A = (-1.5, -2) instead of (0, 0))
 - **Polygon command**: Returns the polygon object, use it for styling
 - **SetColor**: Use color names like "red", "blue", "lightblue", or hex codes
 - **Comments**: Use // for comments (they will be ignored by GeoGebra)
