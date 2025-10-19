@@ -57,10 +57,10 @@ Line(A, B)
 Segment(A, B)
 \`\`\`
 
-**Polygons:**
+**Polygons (for triangles, use Polygon with 3 points):**
 \`\`\`
 Polygon(A, B, C)
-Triangle(A, B, C)
+Polygon(A, B, C, D)
 \`\`\`
 
 **Circles:**
@@ -153,6 +153,7 @@ Angle(A, B, C)
 ⚠️ **The geometry app is 2D ONLY** - do NOT use 3D coordinates
 ⚠️ **Don't use Text() for point labels** - GeoGebra auto-labels points (A, B, C), so Text() creates duplicates!
 ⚠️ **Always lock points with SetFixed()** - For Pythagoras and fixed geometry, use SetFixed(A, true) to prevent dragging
+⚠️ **NO Triangle() command** - Use Polygon(A, B, C) for triangles, NOT Triangle(A, B, C)
 ⚠️ **Keep examples simple** - focus on basic geometry for math students
 ⚠️ **Test your code** - GeoGebra will silently ignore invalid commands
 
