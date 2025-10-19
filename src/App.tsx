@@ -3,6 +3,8 @@ import { useLocalRuntime, type ChatModelAdapter } from "@assistant-ui/react";
 import { Thread } from "@/components/assistant-ui/thread";
 import { buildSystemPrompt } from "@/content/systemPrompt";
 import { PromptConfig } from "@/components/PromptConfig";
+import { NewConversationButton } from "@/components/NewConversationButton";
+import { localStorageHistoryAdapter } from "@/lib/localStorageHistoryAdapter";
 import './App.css'
 
 // Direct Pollinations API call - no backend needed
@@ -108,7 +110,11 @@ const pollinationsAdapter: ChatModelAdapter = {
 };
 
 function App() {
-  const runtime = useLocalRuntime(pollinationsAdapter);
+  const runtime = useLocalRuntime(pollinationsAdapter, {
+    adapters: {
+      history: localStorageHistoryAdapter,
+    },
+  });
 
   return (
     <AssistantRuntimeProvider runtime={runtime}>
@@ -118,7 +124,18 @@ function App() {
         flexDirection: 'column',
         background: 'linear-gradient(135deg, #f8fafc 0%, #ffffff 50%, #f1f5f9 100%)'
       }}>
-        <PromptConfig />
+        <div style={{
+          display: 'flex',
+          justifyContent: 'space-between',
+          alignItems: 'center',
+          padding: '0.75rem 1rem',
+          borderBottom: '1px solid #e2e8f0',
+          backgroundColor: 'rgba(255, 255, 255, 0.8)',
+          backdropFilter: 'blur(10px)'
+        }}>
+          <PromptConfig />
+          <NewConversationButton />
+        </div>
         <Thread />
       </div>
     </AssistantRuntimeProvider>

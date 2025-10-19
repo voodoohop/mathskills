@@ -1,6 +1,7 @@
 import { useState } from 'react';
-import { DEFAULT_PEDAGOGICAL_PROMPT } from '@/content/systemPrompt';
+import { DEFAULT_PEDAGOGICAL_PROMPT } from '@/content/defaultProtocol';
 import { threadSuggestions } from '@/content/suggestions';
+import { PrimaryButton } from '@/components/PrimaryButton';
 
 const DEFAULT_SUGGESTIONS = threadSuggestions.slice(0, 4).map((s: { title: string; action: string }) => ({
   title: s.title,
@@ -10,7 +11,7 @@ const DEFAULT_SUGGESTIONS = threadSuggestions.slice(0, 4).map((s: { title: strin
 export function PromptConfig() {
   const [isOpen, setIsOpen] = useState(false);
   const [prompt, setPrompt] = useState(() => {
-    return localStorage.getItem('mathskills_pedagogical_prompt') || DEFAULT_PEDAGOGICAL_PROMPT;
+    return localStorage.getItem('pedagogical_protocol') || DEFAULT_PEDAGOGICAL_PROMPT;
   });
   const [suggestions, setSuggestions] = useState(() => {
     const saved = localStorage.getItem('mathskills_suggestions');
@@ -18,7 +19,7 @@ export function PromptConfig() {
   });
 
   const handleSave = () => {
-    localStorage.setItem('mathskills_pedagogical_prompt', prompt);
+    localStorage.setItem('pedagogical_protocol', prompt);
     localStorage.setItem('mathskills_suggestions', JSON.stringify(suggestions));
     setIsOpen(false);
     // Reload page to start fresh conversation with new prompt
@@ -29,7 +30,7 @@ export function PromptConfig() {
     if (confirm('Reset to defaults? This cannot be undone.')) {
       setPrompt(DEFAULT_PEDAGOGICAL_PROMPT);
       setSuggestions(DEFAULT_SUGGESTIONS);
-      localStorage.removeItem('mathskills_pedagogical_prompt');
+      localStorage.removeItem('pedagogical_protocol');
       localStorage.removeItem('mathskills_suggestions');
       setIsOpen(false);
       // Reload page to start fresh conversation with default prompt
@@ -39,25 +40,13 @@ export function PromptConfig() {
 
   if (!isOpen) {
     return (
-      <button
+      <PrimaryButton
         onClick={() => setIsOpen(true)}
-        style={{
-          position: 'fixed',
-          top: '1rem',
-          right: '1rem',
-          padding: '0.5rem 1rem',
-          background: '#3b82f6',
-          color: 'white',
-          border: 'none',
-          borderRadius: '0.375rem',
-          cursor: 'pointer',
-          fontSize: '0.875rem',
-          fontWeight: '500',
-          zIndex: 1000,
-        }}
+        ariaLabel="Edit tutoring protocol"
       >
-        ⚙️ Edit Protocol
-      </button>
+        <span style={{ fontSize: '1rem' }}>⚙️</span>
+        Edit Protocol
+      </PrimaryButton>
     );
   }
 
@@ -119,7 +108,7 @@ export function PromptConfig() {
 
         <div style={{ padding: '1.5rem', flex: 1, overflow: 'auto' }}>
           <p style={{ marginTop: 0, color: '#6b7280', fontSize: '0.875rem' }}>
-            Edit the pedagogical instructions below. Technical settings (LaTeX, JSXGraph) are managed separately.
+            Edit the pedagogical instructions below. Technical settings (LaTeX, GeoGebra) are managed separately.
           </p>
           <textarea
             value={prompt}
@@ -197,51 +186,23 @@ export function PromptConfig() {
             justifyContent: 'flex-end',
           }}
         >
-          <button
+          <PrimaryButton
             onClick={handleReset}
-            style={{
-              padding: '0.5rem 1rem',
-              background: '#ef4444',
-              color: 'white',
-              border: 'none',
-              borderRadius: '0.375rem',
-              cursor: 'pointer',
-              fontSize: '0.875rem',
-              fontWeight: '500',
-            }}
+            variant="danger"
           >
             Reset to Default
-          </button>
-          <button
+          </PrimaryButton>
+          <PrimaryButton
             onClick={() => setIsOpen(false)}
-            style={{
-              padding: '0.5rem 1rem',
-              background: '#e5e7eb',
-              color: '#374151',
-              border: 'none',
-              borderRadius: '0.375rem',
-              cursor: 'pointer',
-              fontSize: '0.875rem',
-              fontWeight: '500',
-            }}
+            variant="secondary"
           >
             Cancel
-          </button>
-          <button
+          </PrimaryButton>
+          <PrimaryButton
             onClick={handleSave}
-            style={{
-              padding: '0.5rem 1rem',
-              background: '#3b82f6',
-              color: 'white',
-              border: 'none',
-              borderRadius: '0.375rem',
-              cursor: 'pointer',
-              fontSize: '0.875rem',
-              fontWeight: '500',
-            }}
           >
             Save Changes
-          </button>
+          </PrimaryButton>
         </div>
       </div>
     </div>

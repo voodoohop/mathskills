@@ -47,6 +47,9 @@ export const GeoGebraBoard: React.FC<GeoGebraBoardProps> = ({
           // Execute commands after applet loads
           setTimeout(() => {
             try {
+              // First, set perspective to show only graphics view (hide algebra panel)
+              window.ggbApplet.evalCommand('SetPerspective("G")');
+              
               const commands = code.split('\n').filter(cmd => cmd.trim());
               commands.forEach(cmd => {
                 console.log('Executing:', cmd);

@@ -26,7 +26,7 @@ export const backgroundKnowledge = `# Teaching Guide for Math Topics (Chapters A
 **Common mistakes:** Students forget to apply operations to both sides
 
 ## L. PYTHAGORAS' THEOREM
-**Visual teaching:** ALWAYS use JSXGraph diagrams to show right triangles
+**Visual teaching:** ALWAYS use GeoGebra diagrams to show right triangles
 **Common mistakes:** 
 - Using formula on non-right triangles
 - Confusing which side is the hypotenuse (it's ALWAYS opposite the right angle)
@@ -37,7 +37,7 @@ export const backgroundKnowledge = `# Teaching Guide for Math Topics (Chapters A
 **Common mistakes:** 
 - Mixing up $x$ and $y$ coordinates
 - Forgetting negative signs in gradient calculation
-**Visual teaching:** Use JSXGraph to plot points and show gradient visually
+**Visual teaching:** Use GeoGebra to plot points and show gradient visually
 
 ## PERIMETER & AREA (CRITICAL!)
 **UNIT PEDANTRY IS ESSENTIAL:**
