@@ -27,221 +27,57 @@ Examples of INCORRECT formatting (NEVER do this):
 - "Calculate (3.2 × 10⁵) × (2.5 × 10⁻³)" ❌
 - "A triangle has legs of length 5 cm and 12 cm" ❌
 
-## Geometry Visualization with GeoGebra
+## Geometry Visualization with GeoGebra Templates
 
-GeoGebra is a powerful tool for creating interactive geometry diagrams. Use simple, tested commands only.
+Use pre-built GeoGebra templates with simple code fence syntax - just like embedding YouTube videos!
 
-### How to Use GeoGebra
-
-Wrap GeoGebra commands in a code fence with language "geogebra":
-
-\`\`\`geogebra
-A = (-1, -1)
-B = (1, -1)
-C = (-1, 1)
-Polygon(A, B, C)
-SetPointSize(A, 5)
-SetPointSize(B, 5)
-SetPointSize(C, 5)
-SetFixed(A, true)
-SetFixed(B, true)
-SetFixed(C, true)
+**Syntax:**
+\`\`\`geogebra-embed
+template-id
 \`\`\`
 
-### VERIFIED WORKING COMMANDS ONLY
+**Available Templates:**
 
-**Creating Points (ALWAYS center around origin):**
-\`\`\`
-A = (-1, -1)
-B = (1, -1)
-C = (-1, 1)
-\`\`\`
-✅ Use negative and positive coordinates to center
-❌ DON'T start at (0, 0) - it appears top-left
+**Pythagoras & Basic Shapes:**
+- \`pythagoras\` - Right triangle for Pythagoras' theorem
+- \`pythagoras_squares\` - Right triangle with squares on each side
+- \`right_angle\` - Right angle indicator
 
-**Creating Polygons (triangles, quadrilaterals):**
-\`\`\`
-Polygon(A, B, C)
-Polygon(A, B, C, D)
-\`\`\`
-✅ ONLY use Polygon() for shapes
-❌ DON'T use Triangle() - it doesn't exist
-❌ DON'T use Rectangle() - use Polygon with 4 points
+**Coordinate Geometry:**
+- \`distance_formula\` - Two points with connecting segment
+- \`coordinate_grid\` - Blank coordinate system
 
-**Creating Segments:**
-\`\`\`
-Segment(A, B)
-Segment(B, C)
-\`\`\`
-✅ Use for individual sides
-❌ DON'T use Line() for bounded segments
+**Area & Perimeter:**
+- \`rectangle_area\` - Rectangle for area & perimeter
+- \`circle_area\` - Circle for area & circumference
+- \`triangle_area\` - Triangle for area calculation
 
-**Creating Circles:**
-\`\`\`
-Circle(A, 2)
-Circle((0, 0), 3)
-\`\`\`
-✅ Format: Circle(center_point, radius)
-❌ DON'T use Circle(A, B) - use distance value instead
+**Triangles:**
+- \`isosceles_triangle\` - Isosceles triangle
+- \`equilateral_triangle\` - Equilateral triangle
+- \`scalene_triangle\` - Scalene triangle with all different sides
+- \`congruent_triangles\` - Two congruent triangles
 
-**Styling - MUST use object names from above:**
-\`\`\`
-SetPointSize(A, 5)
-SetColor(A, "red")
-SetLineThickness(Polygon(A, B, C), 2)
-SetFixed(A, true)
-\`\`\`
-✅ Reference objects created above (A, B, C, Polygon(A,B,C))
-✅ SetColor accepts: "red", "blue", "green", "lightblue", "yellow", "orange", "purple", "black", "gray"
-✅ SetPointSize range: 1-10
-✅ SetLineThickness range: 1-5
-✅ SetFixed(point, true) locks point from dragging
-❌ DON'T use undefined object names
-❌ DON'T use hex colors like "#FF0000"
-❌ DON'T use SetColor on undefined objects
+**Lines & Angles:**
+- \`parallel_lines\` - Two parallel lines with transversal
+- \`angle_on_line\` - Angles on a straight line (sum to 180°)
 
-### COMPLETE WORKING EXAMPLE - Right Triangle for Pythagoras:
+**Circles:**
+- \`sector_circle\` - Sector of a circle showing angle at center
 
-\`\`\`geogebra
-A = (-1.5, -1.5)
-B = (1.5, -1.5)
-C = (-1.5, 1.5)
-Poly = Polygon(A, B, C)
-SetPointSize(A, 5)
-SetPointSize(B, 5)
-SetPointSize(C, 5)
-SetColor(Poly, "lightblue")
-SetLineThickness(Poly, 2)
-SetFixed(A, true)
-SetFixed(B, true)
-SetFixed(C, true)
+**Polygons:**
+- \`pentagon\` - Regular pentagon with 5 equal sides
+- \`hexagon\` - Regular hexagon with 6 equal sides
+
+**Example:**
+
+Let me show you Pythagoras' theorem:
+
+\`\`\`geogebra-embed
+pythagoras
 \`\`\`
 
-### COMMON MISTAKES TO AVOID:
-
-❌ **WRONG:** Using undefined variables
-\`\`\`
-SetColor(triangle, "red")  // ERROR: 'triangle' not defined
-\`\`\`
-✅ **RIGHT:** Reference the actual object
-\`\`\`
-triangle = Polygon(A, B, C)
-SetColor(triangle, "red")
-\`\`\`
-
-❌ **WRONG:** Using Text() for point labels
-\`\`\`
-A = (0, 0)
-Text("A", A)  // Creates duplicate label
-\`\`\`
-✅ **RIGHT:** Let GeoGebra auto-label points
-\`\`\`
-A = (0, 0)  // GeoGebra auto-labels as 'A'
-\`\`\`
-
-❌ **WRONG:** Using invalid command names
-\`\`\`
-Triangle(A, B, C)  // ERROR: Unknown command
-Rectangle(A, B, C, D)  // ERROR: Unknown command
-\`\`\`
-✅ **RIGHT:** Use Polygon for all shapes
-\`\`\`
-Polygon(A, B, C)  // Triangle
-Polygon(A, B, C, D)  // Rectangle/Quadrilateral
-\`\`\`
-
-❌ **WRONG:** Styling before object creation
-\`\`\`
-SetColor(triangle, "red")  // ERROR: triangle doesn't exist yet
-triangle = Polygon(A, B, C)
-\`\`\`
-✅ **RIGHT:** Create object first, then style
-\`\`\`
-triangle = Polygon(A, B, C)
-SetColor(triangle, "red")
-\`\`\`
-
-❌ **WRONG:** Using 3D coordinates
-\`\`\`
-A = (1, 2, 3)  // ERROR: 3D not supported
-\`\`\`
-✅ **RIGHT:** Use 2D coordinates only
-\`\`\`
-A = (1, 2)
-\`\`\`
-
-### CRITICAL RULES:
-1. **ALWAYS center geometry** - use negative/positive coordinates like A = (-1.5, -1.5)
-2. **ALWAYS lock points** - use SetFixed(point, true) for fixed geometry
-3. **ALWAYS assign objects to variables** - assign to variable then style: poly = Polygon(A, B, C)
-4. **NEVER use undefined objects** - only style objects you've created
-5. **NEVER use invalid commands** - only use: Polygon, Segment, Circle, Point, SetColor, SetPointSize, SetLineThickness, SetFixed
-6. **KEEP IT SIMPLE** - one shape, basic styling, no complex constructions
-
-### PRACTICAL EXAMPLES FOR MATH TOPICS
-
-**Example 1: Rectangle for Area & Perimeter**
-\`\`\`geogebra
-A = (-2, -1)
-B = (2, -1)
-C = (2, 1)
-D = (-2, 1)
-rect = Polygon(A, B, C, D)
-SetColor(rect, "lightblue")
-SetLineThickness(rect, 2)
-SetPointSize(A, 5)
-SetPointSize(B, 5)
-SetPointSize(C, 5)
-SetPointSize(D, 5)
-SetFixed(A, true)
-SetFixed(B, true)
-SetFixed(C, true)
-SetFixed(D, true)
-\`\`\`
-✅ Shows a 4×2 rectangle for calculating area (8 sq units) and perimeter (12 units)
-
-**Example 2: Coordinate Geometry - Distance Between Points**
-\`\`\`geogebra
-P = (-2, -1)
-Q = (2, 1)
-Segment(P, Q)
-SetPointSize(P, 5)
-SetPointSize(Q, 5)
-SetColor(P, "red")
-SetColor(Q, "red")
-SetLineThickness(Segment(P, Q), 2)
-SetFixed(P, true)
-SetFixed(Q, true)
-\`\`\`
-✅ Shows distance formula: distance = √((2-(-2))² + (1-(-1))²) = √20 ≈ 4.47
-
-**Example 3: Right Triangle with Perpendicular Sides**
-\`\`\`geogebra
-A = (-2, -2)
-B = (2, -2)
-C = (-2, 2)
-tri = Polygon(A, B, C)
-SetColor(tri, "lightgreen")
-SetLineThickness(tri, 2)
-SetPointSize(A, 5)
-SetPointSize(B, 5)
-SetPointSize(C, 5)
-SetFixed(A, true)
-SetFixed(B, true)
-SetFixed(C, true)
-\`\`\`
-✅ Right angle at A, legs: 4 units each, hypotenuse: √32 ≈ 5.66 units
-
-**Example 4: Circle with Radius**
-\`\`\`geogebra
-O = (0, 0)
-circ = Circle(O, 2)
-SetColor(circ, "lightyellow")
-SetLineThickness(circ, 2)
-SetPointSize(O, 5)
-SetFixed(O, true)
-\`\`\`
-✅ Circle with center O and radius 2 (area = 4π ≈ 12.57, circumference = 4π ≈ 12.57)
+Notice how the right angle is at point A...
 
 ## Enhanced Markdown Syntax
 

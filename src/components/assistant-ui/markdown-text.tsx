@@ -12,8 +12,9 @@ import {
 import remarkGfm from "remark-gfm";
 import remarkMath from "remark-math";
 import rehypeKatex from "rehype-katex";
-import { remarkGeoGebraPlugin } from "@/lib/remark-geogebra";
-import { rehypeGeoGebraPlugin } from "@/lib/rehype-geogebra";
+import { remarkGeoGebraEmbedPlugin } from "@/lib/remark-geogebra-embed";
+import { rehypeGeoGebraEmbedPlugin } from "@/lib/rehype-geogebra-embed";
+import { GeoGebraEmbed } from "@/components/geogebra/GeoGebraEmbed";
 import remarkDirective from "remark-directive";
 import remarkGithubBlockquoteAlert from "remark-github-blockquote-alert";
 import remarkFlexibleMarkers from "remark-flexible-markers";
@@ -24,7 +25,6 @@ import { CheckIcon, CopyIcon } from "lucide-react";
 import { TooltipIconButton } from "@/components/assistant-ui/tooltip-icon-button";
 import { cn } from "@/lib/utils";
 import rehypeRaw from "rehype-raw";
-import { GeoGebraBoard } from "@/components/geogebra";
 import { rehypeDirectiveContainers } from "@/lib/rehype-directive-containers";
 
 // Preprocess function to normalize LaTeX delimiters
@@ -48,9 +48,9 @@ const MarkdownTextImpl = () => {
         remarkGithubBlockquoteAlert,
         remarkFlexibleMarkers,
         remarkDefinitionList,
-        remarkGeoGebraPlugin,
+        remarkGeoGebraEmbedPlugin,
       ]}
-      rehypePlugins={[rehypeRaw, rehypeDirectiveContainers, rehypeGeoGebraPlugin, rehypeKatex]}
+      rehypePlugins={[rehypeRaw, rehypeDirectiveContainers, rehypeGeoGebraEmbedPlugin, rehypeKatex]}
       preprocess={normalizeCustomMathTags}
       className="aui-md text-left"
       components={defaultComponents}
@@ -101,11 +101,8 @@ const useCopyToClipboard = ({
 
 const defaultComponents = memoizeMarkdownComponents({
   ...{
-    GeoGebraBoard: ({ code }: { code: string }) => (
-      <GeoGebraBoard code={code} />
-    ),
-    'geogebra-board': ({ code }: { code: string }) => (
-      <GeoGebraBoard code={code} />
+    GeoGebraEmbed: ({ templateId }: { templateId: string }) => (
+      <GeoGebraEmbed templateId={templateId} />
     ),
   } as any,
   svg: ({ className, ...props }) => (
