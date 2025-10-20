@@ -246,13 +246,13 @@ const AssistantMessage: FC = () => {
         className="aui-assistant-message-root relative mx-auto w-full max-w-[var(--thread-max-width)] animate-in py-4 duration-150 ease-out fade-in slide-in-from-bottom-1 last:mb-24"
         data-role="assistant"
       >
-        <div className="flex gap-3 items-start">
+        <div className="flex gap-2 items-start">
           {/* Dog Avatar */}
-          <div className="flex-shrink-0 flex items-center justify-center h-24 w-24 rounded-full bg-gradient-to-br from-blue-200 to-blue-100 dark:from-slate-400 dark:to-slate-300 shadow-md">
+          <div className="flex-shrink-0 flex items-center justify-center h-12 w-12 sm:h-14 sm:w-14 md:h-16 md:w-16 rounded-full bg-gradient-to-br from-blue-200 to-blue-100 dark:from-slate-400 dark:to-slate-300 shadow-sm">
             <img
               src="/mathskills_dog_head.png"
               alt="AI Tutor"
-              className="h-20 w-20 object-contain"
+              className="h-10 w-10 sm:h-12 sm:w-12 md:h-14 md:w-14 object-contain"
             />
           </div>
 
