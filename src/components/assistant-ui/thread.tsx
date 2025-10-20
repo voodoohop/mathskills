@@ -171,9 +171,9 @@ const ComposerAction: FC = () => {
             tooltip="Send message"
             side="bottom"
             type="submit"
-            variant="default"
+            variant="ghost"
             size="icon"
-            className="aui-composer-send size-[34px] rounded-full p-1"
+            className="aui-composer-send size-[34px] rounded-full p-1 bg-blue-500 hover:bg-blue-600 dark:bg-blue-600 dark:hover:bg-blue-700 text-white"
             aria-label="Send message"
           >
             <ArrowUpIcon className="aui-composer-send-icon size-5" />
