@@ -119,8 +119,8 @@ function App() {
 
   return (
     <AssistantRuntimeProvider runtime={runtime}>
-      <div className="h-screen flex flex-col bg-gradient-to-br from-slate-50 via-white to-slate-100 dark:from-slate-950 dark:via-slate-900 dark:to-slate-950">
-        <div className="flex justify-between items-center px-4 py-3 border-b border-slate-200 dark:border-slate-800 bg-white/80 dark:bg-slate-900/80 backdrop-blur-sm">
+      <div className="h-screen flex flex-col bg-white dark:bg-slate-950">
+        <div className="flex justify-between items-center px-4 py-3 border-b border-purple-200 dark:border-purple-800/50 bg-white dark:bg-slate-900 backdrop-blur-md shadow-sm">
           <NewConversationButton />
           <div className="flex items-center gap-2">
             <PromptConfig />

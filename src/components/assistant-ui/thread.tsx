@@ -77,25 +77,34 @@ const ThreadScrollToBottom: FC = () => {
 
 const ThreadWelcome: FC = () => {
   return (
-    <div className="aui-thread-welcome-root mx-auto my-auto flex w-full max-w-[var(--thread-max-width)] flex-grow flex-col">
+    <div className="aui-thread-welcome-root mx-auto my-auto flex w-full max-w-[var(--thread-max-width)] flex-grow flex-col gap-8">
       <div className="aui-thread-welcome-center flex w-full flex-grow flex-col items-center justify-center">
         <div className="aui-thread-welcome-message flex size-full flex-col justify-center px-8">
           <m.div
             initial={{ opacity: 0, y: 10 }}
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: 10 }}
-            className="aui-thread-welcome-message-motion-1 text-2xl font-semibold"
+            className="aui-thread-welcome-message-motion-1 text-5xl font-black text-blue-600 dark:text-cyan-400 leading-tight"
           >
-            Welcome to Math Skills! 🎓
+            Welcome to MathSkills! 🎓✨
           </m.div>
           <m.div
             initial={{ opacity: 0, y: 10 }}
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: 10 }}
             transition={{ delay: 0.1 }}
-            className="aui-thread-welcome-message-motion-2 text-2xl text-muted-foreground/65"
+            className="aui-thread-welcome-message-motion-2 text-2xl text-purple-700 dark:text-purple-400 font-bold mt-6"
           >
-            Let's start by getting to know each other!
+            Your personal math tutor 🚀
+          </m.div>
+          <m.div
+            initial={{ opacity: 0, y: 10 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: 10 }}
+            transition={{ delay: 0.2 }}
+            className="aui-thread-welcome-message-motion-3 text-lg text-gray-600 dark:text-gray-400 font-medium mt-4"
+          >
+            Tell me your name and let's get started 💬
           </m.div>
         </div>
       </div>
@@ -122,18 +131,10 @@ const ThreadSuggestions: FC = () => {
             asChild
           >
             <Button
-              variant="ghost"
-              className="aui-thread-welcome-suggestion h-auto w-full flex-1 flex-wrap items-start justify-start gap-1 rounded-2xl border px-5 py-4 text-left text-sm transition-all @md:flex-col"
-              style={{
-                backgroundColor: '#ffffff',
-                borderColor: '#e2e8f0',
-                boxShadow: '0 1px 2px 0 rgb(0 0 0 / 0.05)'
-              }}
+              className="aui-thread-welcome-suggestion !h-auto w-full flex-1 flex-wrap items-start justify-start gap-1 rounded-2xl !border-2 !border-blue-400 px-5 py-4 text-left text-sm font-bold !bg-white !text-blue-600 hover:!bg-blue-50 dark:!border-cyan-500 dark:!bg-slate-800 dark:!text-cyan-400 dark:hover:!bg-slate-700 hover:scale-105 hover:shadow-lg @md:flex-col"
               aria-label={suggestedAction.action}
             >
-              <span className="aui-thread-welcome-suggestion-text-1 font-semibold" style={{ color: '#0f172a' }}>
-                {suggestedAction.title}
-              </span>
+              {suggestedAction.title}
             </Button>
           </ThreadPrimitive.Suggestion>
         </m.div>
@@ -147,11 +148,11 @@ const Composer: FC = () => {
     <div className="aui-composer-wrapper sticky bottom-0 mx-auto flex w-full max-w-[var(--thread-max-width)] flex-col gap-4 overflow-visible rounded-t-3xl pb-4 md:pb-6">
       <ThreadScrollToBottom />
       <ComposerPrimitive.Root
-        className="aui-composer-root relative flex w-full flex-col rounded-3xl border bg-white dark:bg-slate-800 border-slate-200 dark:border-slate-700 px-1 pt-2 shadow-lg dark:shadow-xl"
+        className="aui-composer-root relative flex w-full flex-col rounded-3xl border-2 bg-white dark:bg-slate-900 border-blue-300 dark:border-cyan-600 px-1 pt-2 shadow-lg dark:shadow-lg dark:shadow-cyan-900/30"
       >
         <ComposerPrimitive.Input
           placeholder="Send a message..."
-          className="aui-composer-input mb-1 max-h-32 min-h-16 w-full resize-none bg-transparent px-3.5 pt-1.5 pb-3 text-base text-foreground placeholder-slate-400 dark:placeholder-slate-500 outline-none"
+          className="aui-composer-input mb-1 max-h-32 min-h-16 w-full resize-none bg-transparent px-3.5 pt-1.5 pb-3 text-base text-foreground placeholder-gray-400 dark:placeholder-gray-500 outline-none"
           rows={1}
           autoFocus
           aria-label="Message input"
@@ -173,7 +174,7 @@ const ComposerAction: FC = () => {
             type="submit"
             variant="ghost"
             size="icon"
-            className="aui-composer-send size-[34px] rounded-full p-1 bg-blue-500 hover:bg-blue-600 dark:bg-blue-600 dark:hover:bg-blue-700 text-white"
+            className="aui-composer-send size-[34px] rounded-full p-1 bg-blue-600 hover:bg-blue-700 dark:bg-cyan-600 dark:hover:bg-cyan-700 text-white font-bold transition-all hover:scale-110"
             aria-label="Send message"
           >
             <ArrowUpIcon className="aui-composer-send-icon size-5" />

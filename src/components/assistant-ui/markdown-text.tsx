@@ -25,6 +25,8 @@ import { TooltipIconButton } from "@/components/assistant-ui/tooltip-icon-button
 import { cn } from "@/lib/utils";
 import rehypeRaw from "rehype-raw";
 import { rehypeDirectiveContainers } from "@/lib/rehype-directive-containers";
+import { rehypeCelebrationPlugin } from "@/lib/rehype-celebration";
+import { CelebrationAnimation } from "@/components/CelebrationAnimation";
 
 // Preprocess function to normalize LaTeX delimiters
 function normalizeCustomMathTags(input: string): string {
@@ -47,7 +49,7 @@ const MarkdownTextImpl = () => {
         remarkGithubBlockquoteAlert,
         remarkGeoGebraEmbedPlugin,
       ]}
-      rehypePlugins={[rehypeRaw, rehypeDirectiveContainers, rehypeGeoGebraEmbedPlugin, rehypeKatex]}
+      rehypePlugins={[rehypeRaw, rehypeCelebrationPlugin, rehypeDirectiveContainers, rehypeGeoGebraEmbedPlugin, rehypeKatex]}
       preprocess={normalizeCustomMathTags}
       className="aui-md text-left"
       components={defaultComponents}
@@ -101,6 +103,9 @@ const defaultComponents = memoizeMarkdownComponents({
     GeoGebraEmbed: ({ templateId }: { templateId: string }) => (
       <GeoGebraEmbed templateId={templateId} />
     ),
+    'celebration-animation': ({ type, autoplay }: { type: string; autoplay: string }) => (
+      <CelebrationAnimation type={type as 'confetti' | 'fireworks' | 'particles'} autoplay={autoplay === 'true'} />
+    ),
   } as any,
   svg: ({ className, ...props }) => (
     <svg
@@ -114,7 +119,7 @@ const defaultComponents = memoizeMarkdownComponents({
   h1: ({ className, ...props }) => (
     <h1
       className={cn(
-        "aui-md-h1 mb-8 scroll-m-20 text-4xl font-extrabold tracking-tight last:mb-0",
+        "aui-md-h1 mb-8 scroll-m-20 text-4xl font-black tracking-tight last:mb-0 text-blue-600 dark:text-cyan-400",
         className,
       )}
       {...props}
@@ -123,7 +128,7 @@ const defaultComponents = memoizeMarkdownComponents({
   h2: ({ className, ...props }) => (
     <h2
       className={cn(
-        "aui-md-h2 mt-8 mb-4 scroll-m-20 text-3xl font-semibold tracking-tight first:mt-0 last:mb-0",
+        "aui-md-h2 mt-8 mb-4 scroll-m-20 text-3xl font-bold tracking-tight first:mt-0 last:mb-0 text-blue-600 dark:text-cyan-400",
         className,
       )}
       {...props}
@@ -132,7 +137,7 @@ const defaultComponents = memoizeMarkdownComponents({
   h3: ({ className, ...props }) => (
     <h3
       className={cn(
-        "aui-md-h3 mt-6 mb-4 scroll-m-20 text-2xl font-semibold tracking-tight first:mt-0 last:mb-0",
+        "aui-md-h3 mt-6 mb-4 scroll-m-20 text-2xl font-bold tracking-tight first:mt-0 last:mb-0 text-purple-700 dark:text-purple-400",
         className,
       )}
       {...props}
@@ -177,7 +182,7 @@ const defaultComponents = memoizeMarkdownComponents({
   a: ({ className, ...props }) => (
     <a
       className={cn(
-        "aui-md-a font-medium text-primary underline underline-offset-4",
+        "aui-md-a font-bold text-blue-600 dark:text-cyan-400 underline underline-offset-4 hover:text-blue-700 dark:hover:text-cyan-300",
         className,
       )}
       {...props}

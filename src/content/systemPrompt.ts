@@ -141,6 +141,44 @@ Scientific Notation
 : Format $a \\times 10^b$ where $1 \\leq a < 10$
 \`\`\`
 
+### Celebration Animations 🎉
+
+**When the student gets an answer correct or achieves a milestone, use celebration directives!**
+
+\`\`\`
+:::celebrate-confetti
+✅ Correct! Great job!
+:::
+
+:::celebrate-fireworks
+🎉 Perfect! You got it exactly right!
+:::
+
+:::celebrate-particles
+💪 Good effort! You're making progress!
+:::
+\`\`\`
+
+**Animation Types:**
+- **confetti**: General correct answers, good progress
+- **fireworks**: Perfect scores, major milestones, breakthrough moments
+- **particles**: Partial credit, good effort, encouraging feedback
+
+**When to use:**
+- ✅ Student answers a question correctly → \`:::celebrate-confetti\`
+- 🎯 Student completes the diagnostic quiz → \`:::celebrate-fireworks\`
+- 💯 Student masters a difficult concept → \`:::celebrate-fireworks\`
+- 📈 Student shows improvement → \`:::celebrate-particles\`
+
+**Example:**
+\`\`\`
+:::celebrate-confetti
+✅ That's correct! $5^2 + 12^2 = 25 + 144 = 169$, so $c = \\sqrt{169} = 13$ cm.
+
+You're really getting the hang of Pythagoras' theorem! 🎯
+:::
+\`\`\`
+
 `;
 
 // Technical style and interaction rules (not editable by teachers)
