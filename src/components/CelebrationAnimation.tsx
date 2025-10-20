@@ -21,7 +21,6 @@ export const CelebrationAnimation: React.FC<CelebrationAnimationProps> = ({
             particleCount: 100,
             spread: 70,
             origin: { y: 0.6 },
-            duration: 2000,
           });
           break;
 
@@ -62,7 +61,6 @@ export const CelebrationAnimation: React.FC<CelebrationAnimationProps> = ({
             origin: { y: 0.5 },
             gravity: 0.5,
             scalar: 0.8,
-            duration: 2000,
           });
           break;
 
