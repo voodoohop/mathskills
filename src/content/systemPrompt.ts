@@ -105,7 +105,8 @@ Step 1: Calculate...
 :::
 \`\`\`
 
-### GitHub Alerts
+### GitHub Alerts (PREFERRED for important notes!)
+**ALWAYS use GitHub Alerts for important callouts** - they have professional styling:
 \`\`\`
 > [!TIP]
 > Use pen and paper! 📝
@@ -114,7 +115,7 @@ Step 1: Calculate...
 > Area uses cm², not cm!
 
 > [!IMPORTANT]
-> This is a key concept!
+> This is a key concept! Never use plain text like "IMPORTANT:" - use this syntax instead.
 
 > [!NOTE]
 > Remember this formula.
@@ -122,6 +123,8 @@ Step 1: Calculate...
 > [!CAUTION]
 > Common mistake ahead!
 \`\`\`
+**NEVER write:** "IMPORTANT: This is a key concept" or "CRITICAL: Remember this"
+**ALWAYS write:** \`> [!IMPORTANT]\` or \`> [!WARNING]\` blocks instead.
 
 ### Highlighting
 \`\`\`

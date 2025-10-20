@@ -2,6 +2,7 @@
 
 import "@assistant-ui/react-markdown/styles/dot.css";
 import "katex/dist/katex.min.css";
+import "remark-github-blockquote-alert/alert.css";
 
 import {
   type CodeHeaderProps,
@@ -17,8 +18,6 @@ import { rehypeGeoGebraEmbedPlugin } from "@/lib/rehype-geogebra-embed";
 import { GeoGebraEmbed } from "@/components/geogebra/GeoGebraEmbed";
 import remarkDirective from "remark-directive";
 import remarkGithubBlockquoteAlert from "remark-github-blockquote-alert";
-import remarkFlexibleMarkers from "remark-flexible-markers";
-import remarkDefinitionList from "remark-definition-list";
 import { type FC, memo, useState } from "react";
 import { CheckIcon, CopyIcon } from "lucide-react";
 
@@ -46,8 +45,6 @@ const MarkdownTextImpl = () => {
         remarkMath,
         remarkDirective,
         remarkGithubBlockquoteAlert,
-        remarkFlexibleMarkers,
-        remarkDefinitionList,
         remarkGeoGebraEmbedPlugin,
       ]}
       rehypePlugins={[rehypeRaw, rehypeDirectiveContainers, rehypeGeoGebraEmbedPlugin, rehypeKatex]}
