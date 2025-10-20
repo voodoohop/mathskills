@@ -246,19 +246,33 @@ const AssistantMessage: FC = () => {
         className="aui-assistant-message-root relative mx-auto w-full max-w-[var(--thread-max-width)] animate-in py-4 duration-150 ease-out fade-in slide-in-from-bottom-1 last:mb-24"
         data-role="assistant"
       >
-        <div className="aui-assistant-message-content leading-7 break-words text-foreground">
-          <MessagePrimitive.Parts
-            components={{
-              Text: MarkdownText,
-              tools: { Fallback: ToolFallback },
-            }}
-          />
-          <MessageError />
-        </div>
+        <div className="flex gap-3 items-start">
+          {/* Dog Avatar */}
+          <div className="flex-shrink-0 flex items-center justify-center h-24 w-24 rounded-full bg-gradient-to-br from-blue-200 to-blue-100 dark:from-slate-400 dark:to-slate-300 shadow-md">
+            <img
+              src="/mathskills_dog_head.png"
+              alt="AI Tutor"
+              className="h-20 w-20 object-contain"
+            />
+          </div>
 
-        <div className="aui-assistant-message-footer mt-2 flex">
-          <BranchPicker />
-          <AssistantActionBar />
+          {/* Message Content */}
+          <div className="flex-1 min-w-0">
+            <div className="aui-assistant-message-content leading-7 break-words text-foreground">
+              <MessagePrimitive.Parts
+                components={{
+                  Text: MarkdownText,
+                  tools: { Fallback: ToolFallback },
+                }}
+              />
+              <MessageError />
+            </div>
+
+            <div className="aui-assistant-message-footer mt-2 flex">
+              <BranchPicker />
+              <AssistantActionBar />
+            </div>
+          </div>
         </div>
       </div>
     </MessagePrimitive.Root>
