@@ -1,7 +1,9 @@
 import { useState } from 'react';
+import { createPortal } from 'react-dom';
 import { DEFAULT_PEDAGOGICAL_PROMPT } from '@/content/defaultProtocol';
 import { threadSuggestions } from '@/content/suggestions';
 import { PrimaryButton } from '@/components/PrimaryButton';
+import { useDarkMode } from '@/hooks/useDarkMode';
 
 const DEFAULT_SUGGESTIONS = threadSuggestions.slice(0, 4).map((s: { title: string; action: string }) => ({
   title: s.title,
@@ -9,6 +11,7 @@ const DEFAULT_SUGGESTIONS = threadSuggestions.slice(0, 4).map((s: { title: strin
 }));
 
 export function PromptConfig() {
+  const { isDark } = useDarkMode();
   const [isOpen, setIsOpen] = useState(false);
   const [prompt, setPrompt] = useState(() => {
     return localStorage.getItem('pedagogical_protocol') || DEFAULT_PEDAGOGICAL_PROMPT;
@@ -38,8 +41,8 @@ export function PromptConfig() {
     }
   };
 
-  if (!isOpen) {
-    return (
+  return (
+    <>
       <PrimaryButton
         onClick={() => setIsOpen(true)}
         ariaLabel="Edit tutoring protocol"
@@ -48,10 +51,7 @@ export function PromptConfig() {
         <span style={{ fontSize: '1rem' }}>⚙️</span>
         Edit Protocol
       </PrimaryButton>
-    );
-  }
-
-  return (
+      {isOpen && createPortal(
     <div
       style={{
         position: 'fixed',
@@ -63,7 +63,7 @@ export function PromptConfig() {
         display: 'flex',
         alignItems: 'center',
         justifyContent: 'center',
-        zIndex: 1000,
+        zIndex: 9999,
         padding: '1rem',
       }}
       onClick={() => setIsOpen(false)}
@@ -71,7 +71,7 @@ export function PromptConfig() {
       <div
         onClick={(e) => e.stopPropagation()}
         style={{
-          background: 'white',
+          background: isDark ? '#1e293b' : 'white',
           borderRadius: '0.5rem',
           width: '100%',
           maxWidth: '800px',
@@ -84,13 +84,13 @@ export function PromptConfig() {
         <div
           style={{
             padding: '1.5rem',
-            borderBottom: '1px solid #e5e7eb',
+            borderBottom: `1px solid ${isDark ? '#334155' : '#e5e7eb'}`,
             display: 'flex',
             justifyContent: 'space-between',
             alignItems: 'center',
           }}
         >
-          <h2 style={{ margin: 0, fontSize: '1.25rem', fontWeight: '600' }}>
+          <h2 style={{ margin: 0, fontSize: '1.25rem', fontWeight: '600', color: isDark ? '#f1f5f9' : '#000' }}>
             Edit Tutoring Protocol
           </h2>
           <button
@@ -100,7 +100,7 @@ export function PromptConfig() {
               border: 'none',
               fontSize: '1.5rem',
               cursor: 'pointer',
-              color: '#6b7280',
+              color: isDark ? '#94a3b8' : '#6b7280',
             }}
           >
             ×
@@ -108,7 +108,7 @@ export function PromptConfig() {
         </div>
 
         <div style={{ padding: '1.5rem', flex: 1, overflow: 'auto' }}>
-          <p style={{ marginTop: 0, color: '#6b7280', fontSize: '0.875rem' }}>
+          <p style={{ marginTop: 0, color: isDark ? '#cbd5e1' : '#6b7280', fontSize: '0.875rem' }}>
             Edit the pedagogical instructions below. Technical settings (LaTeX, GeoGebra) are managed separately.
           </p>
           <textarea
@@ -118,25 +118,27 @@ export function PromptConfig() {
               width: '100%',
               height: '300px',
               padding: '0.75rem',
-              border: '1px solid #d1d5db',
+              border: `1px solid ${isDark ? '#475569' : '#d1d5db'}`,
               borderRadius: '0.375rem',
               fontFamily: 'monospace',
               fontSize: '0.875rem',
               resize: 'vertical',
               marginBottom: '1.5rem',
+              background: isDark ? '#0f172a' : '#fff',
+              color: isDark ? '#f1f5f9' : '#000',
             }}
           />
           
-          <h3 style={{ margin: '0 0 0.75rem 0', fontSize: '1rem', fontWeight: '600' }}>
+          <h3 style={{ margin: '0 0 0.75rem 0', fontSize: '1rem', fontWeight: '600', color: isDark ? '#f1f5f9' : '#000' }}>
             Prompt Suggestions
           </h3>
-          <p style={{ marginTop: 0, marginBottom: '1rem', color: '#6b7280', fontSize: '0.875rem' }}>
+          <p style={{ marginTop: 0, marginBottom: '1rem', color: isDark ? '#cbd5e1' : '#6b7280', fontSize: '0.875rem' }}>
             Edit the 4 suggestion buttons that appear at the start of a conversation.
           </p>
           
           {suggestions.map((suggestion: any, index: number) => (
             <div key={index} style={{ marginBottom: '1rem' }}>
-              <label style={{ display: 'block', fontSize: '0.75rem', fontWeight: '500', marginBottom: '0.25rem', color: '#374151' }}>
+              <label style={{ display: 'block', fontSize: '0.75rem', fontWeight: '500', marginBottom: '0.25rem', color: isDark ? '#cbd5e1' : '#374151' }}>
                 Suggestion {index + 1}
               </label>
               <input
@@ -151,10 +153,12 @@ export function PromptConfig() {
                 style={{
                   width: '100%',
                   padding: '0.5rem',
-                  border: '1px solid #d1d5db',
+                  border: `1px solid ${isDark ? '#475569' : '#d1d5db'}`,
                   borderRadius: '0.375rem',
                   fontSize: '0.875rem',
                   marginBottom: '0.5rem',
+                  background: isDark ? '#0f172a' : '#fff',
+                  color: isDark ? '#f1f5f9' : '#000',
                 }}
               />
               <input
@@ -169,9 +173,11 @@ export function PromptConfig() {
                 style={{
                   width: '100%',
                   padding: '0.5rem',
-                  border: '1px solid #d1d5db',
+                  border: `1px solid ${isDark ? '#475569' : '#d1d5db'}`,
                   borderRadius: '0.375rem',
                   fontSize: '0.875rem',
+                  background: isDark ? '#0f172a' : '#fff',
+                  color: isDark ? '#f1f5f9' : '#000',
                 }}
               />
             </div>
@@ -181,7 +187,7 @@ export function PromptConfig() {
         <div
           style={{
             padding: '1.5rem',
-            borderTop: '1px solid #e5e7eb',
+            borderTop: `1px solid ${isDark ? '#334155' : '#e5e7eb'}`,
             display: 'flex',
             gap: '0.75rem',
             justifyContent: 'flex-end',
@@ -206,6 +212,9 @@ export function PromptConfig() {
           </PrimaryButton>
         </div>
       </div>
-    </div>
+    </div>,
+    document.body
+  )}
+    </>
   );
 }
