@@ -146,18 +146,12 @@ const Composer: FC = () => {
   return (
     <div className="aui-composer-wrapper sticky bottom-0 mx-auto flex w-full max-w-[var(--thread-max-width)] flex-col gap-4 overflow-visible rounded-t-3xl pb-4 md:pb-6">
       <ThreadScrollToBottom />
-      <ComposerPrimitive.Root 
-        className="aui-composer-root relative flex w-full flex-col rounded-3xl border px-1 pt-2"
-        style={{
-          backgroundColor: '#ffffff',
-          borderColor: '#e2e8f0',
-          boxShadow: '0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1)'
-        }}
+      <ComposerPrimitive.Root
+        className="aui-composer-root relative flex w-full flex-col rounded-3xl border bg-white dark:bg-slate-800 border-slate-200 dark:border-slate-700 px-1 pt-2 shadow-lg dark:shadow-xl"
       >
         <ComposerPrimitive.Input
           placeholder="Send a message..."
-          className="aui-composer-input mb-1 max-h-32 min-h-16 w-full resize-none bg-transparent px-3.5 pt-1.5 pb-3 text-base outline-none"
-          style={{ color: '#0f172a' }}
+          className="aui-composer-input mb-1 max-h-32 min-h-16 w-full resize-none bg-transparent px-3.5 pt-1.5 pb-3 text-base text-foreground placeholder-slate-400 dark:placeholder-slate-500 outline-none"
           rows={1}
           autoFocus
           aria-label="Message input"
@@ -253,13 +247,7 @@ const UserMessage: FC = () => {
       >
         <div className="aui-user-message-content-wrapper relative flex justify-end">
           <div 
-            className="aui-user-message-content rounded-3xl px-5 py-2.5 break-words"
-            style={{
-              backgroundColor: '#0f172a',
-              color: '#f8fafc',
-              boxShadow: '0 1px 2px 0 rgb(0 0 0 / 0.05)'
-            }}
-          >
+            className="aui-user-message-content rounded-3xl px-5 py-2.5 break-words bg-slate-900 dark:bg-slate-700 text-white shadow-sm">
             <MessagePrimitive.Parts />
           </div>
         </div>

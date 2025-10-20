@@ -4,6 +4,7 @@ import { Thread } from "@/components/assistant-ui/thread";
 import { buildSystemPrompt } from "@/content/systemPrompt";
 import { PromptConfig } from "@/components/PromptConfig";
 import { NewConversationButton } from "@/components/NewConversationButton";
+import { DarkModeToggle } from "@/components/DarkModeToggle";
 import { localStorageHistoryAdapter } from "@/lib/localStorageHistoryAdapter";
 import './App.css'
 
@@ -118,23 +119,13 @@ function App() {
 
   return (
     <AssistantRuntimeProvider runtime={runtime}>
-      <div style={{
-        height: '100vh',
-        display: 'flex',
-        flexDirection: 'column',
-        background: 'linear-gradient(135deg, #f8fafc 0%, #ffffff 50%, #f1f5f9 100%)'
-      }}>
-        <div style={{
-          display: 'flex',
-          justifyContent: 'space-between',
-          alignItems: 'center',
-          padding: '0.75rem 1rem',
-          borderBottom: '1px solid #e2e8f0',
-          backgroundColor: 'rgba(255, 255, 255, 0.8)',
-          backdropFilter: 'blur(10px)'
-        }}>
+      <div className="h-screen flex flex-col bg-gradient-to-br from-slate-50 via-white to-slate-100 dark:from-slate-950 dark:via-slate-900 dark:to-slate-950">
+        <div className="flex justify-between items-center px-4 py-3 border-b border-slate-200 dark:border-slate-800 bg-white/80 dark:bg-slate-900/80 backdrop-blur-sm">
           <NewConversationButton />
-          <PromptConfig />
+          <div className="flex items-center gap-2">
+            <PromptConfig />
+            <DarkModeToggle />
+          </div>
         </div>
         <Thread />
       </div>
