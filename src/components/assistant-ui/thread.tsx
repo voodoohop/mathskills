@@ -77,34 +77,64 @@ const ThreadScrollToBottom: FC = () => {
 
 const ThreadWelcome: FC = () => {
   return (
-    <div className="aui-thread-welcome-root mx-auto my-auto flex w-full max-w-[var(--thread-max-width)] flex-grow flex-col gap-8">
-      <div className="aui-thread-welcome-center flex w-full flex-grow flex-col items-center justify-center">
-        <div className="aui-thread-welcome-message flex size-full flex-col justify-center px-8">
+    <div className="aui-thread-welcome-root mx-auto my-auto flex w-full max-w-[var(--thread-max-width)] flex-grow flex-col gap-12 py-8">
+      <div className="aui-thread-welcome-center flex w-full flex-grow flex-col items-center justify-center gap-12">
+        {/* Avatar Section */}
+        <div className="flex gap-8 justify-center items-end">
           <m.div
-            initial={{ opacity: 0, y: 10 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: 10 }}
-            className="aui-thread-welcome-message-motion-1 text-5xl font-black text-blue-600 dark:text-cyan-400 leading-tight"
+            initial={{ opacity: 0, scale: 0.8, y: 20 }}
+            animate={{ opacity: 1, scale: 1, y: 0 }}
+            transition={{ delay: 0.05, type: "spring", stiffness: 100 }}
+            className="flex items-center justify-center h-32 w-32 rounded-full bg-gradient-to-br from-blue-200 to-blue-100 dark:from-slate-400 dark:to-slate-300 shadow-lg"
           >
-            Welcome to MathSkills! 🎓✨
+            <img
+              src="/mathskills_girl.png"
+              alt="Girl tutor"
+              className="h-28 w-28 object-contain"
+            />
           </m.div>
           <m.div
+            initial={{ opacity: 0, scale: 0.8, y: 20 }}
+            animate={{ opacity: 1, scale: 1, y: 0 }}
+            transition={{ delay: 0.1, type: "spring", stiffness: 100 }}
+            className="flex items-center justify-center h-32 w-32 rounded-full bg-gradient-to-br from-blue-200 to-blue-100 dark:from-slate-400 dark:to-slate-300 shadow-lg"
+          >
+            <img
+              src="/mathskills_dog.png"
+              alt="Dog tutor"
+              className="h-28 w-28 object-contain"
+            />
+          </m.div>
+        </div>
+
+        {/* Welcome Message Section */}
+        <div className="aui-thread-welcome-message flex flex-col justify-center px-8 text-center gap-4">
+          <m.div
             initial={{ opacity: 0, y: 10 }}
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: 10 }}
-            transition={{ delay: 0.1 }}
-            className="aui-thread-welcome-message-motion-2 text-2xl text-purple-700 dark:text-purple-400 font-bold mt-6"
+            transition={{ delay: 0.15 }}
+            className="aui-thread-welcome-message-motion-1 text-6xl font-black text-blue-600 dark:text-cyan-400 leading-tight"
           >
-            Your personal math tutor 🚀
+            Welcome to MathSkills <span className="emoji">🎓</span>
           </m.div>
           <m.div
             initial={{ opacity: 0, y: 10 }}
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: 10 }}
             transition={{ delay: 0.2 }}
-            className="aui-thread-welcome-message-motion-3 text-lg text-gray-600 dark:text-gray-400 font-medium mt-4"
+            className="aui-thread-welcome-message-motion-2 text-xl text-purple-600 dark:text-purple-300 font-semibold"
           >
-            Tell me your name and let's get started 💬
+            Your personal math tutor <span className="emoji">🚀</span>
+          </m.div>
+          <m.div
+            initial={{ opacity: 0, y: 10 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: 10 }}
+            transition={{ delay: 0.25 }}
+            className="aui-thread-welcome-message-motion-3 text-base text-gray-500 dark:text-gray-400 font-medium"
+          >
+            Tell me your name and let's get started <span className="emoji">💬</span>
           </m.div>
         </div>
       </div>
@@ -216,7 +246,7 @@ const AssistantMessage: FC = () => {
         className="aui-assistant-message-root relative mx-auto w-full max-w-[var(--thread-max-width)] animate-in py-4 duration-150 ease-out fade-in slide-in-from-bottom-1 last:mb-24"
         data-role="assistant"
       >
-        <div className="aui-assistant-message-content mx-2 leading-7 break-words text-foreground">
+        <div className="aui-assistant-message-content leading-7 break-words text-foreground">
           <MessagePrimitive.Parts
             components={{
               Text: MarkdownText,
@@ -226,7 +256,7 @@ const AssistantMessage: FC = () => {
           <MessageError />
         </div>
 
-        <div className="aui-assistant-message-footer mt-2 ml-2 flex">
+        <div className="aui-assistant-message-footer mt-2 flex">
           <BranchPicker />
           <AssistantActionBar />
         </div>

@@ -183,3 +183,9 @@ button:focus-visible {
     @apply bg-background text-foreground;
   }
 }
+
+/* Emoji Color Styling - Simple & Elegant */
+/* Just add class="emoji" to any emoji and it will match your color scheme */
+.emoji {
+  filter: saturate(1.5) hue-rotate(180deg);
+}

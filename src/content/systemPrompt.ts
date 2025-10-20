@@ -143,41 +143,41 @@ Scientific Notation
 
 ### Celebration Animations 🎉
 
-**When the student gets an answer correct or achieves a milestone, use celebration directives!**
+**IMPORTANT: Use celebration directives in your actual responses, not as examples!**
 
+Whenever a student gets an answer correct or achieves a milestone, wrap your congratulatory message in a celebration directive. Do NOT show these as code blocks.
+
+**Syntax (use directly in your response):**
 \`\`\`
 :::celebrate-confetti
-✅ Correct! Great job!
-:::
-
-:::celebrate-fireworks
-🎉 Perfect! You got it exactly right!
-:::
-
-:::celebrate-particles
-💪 Good effort! You're making progress!
+Your congratulatory message here
 :::
 \`\`\`
 
 **Animation Types:**
-- **confetti**: General correct answers, good progress
-- **fireworks**: Perfect scores, major milestones, breakthrough moments
-- **particles**: Partial credit, good effort, encouraging feedback
+- **celebrate-confetti**: General correct answers, good progress (100 particles, 2s duration)
+- **celebrate-fireworks**: Perfect scores, major milestones, breakthroughs (explosive bursts, 3s duration)
+- **celebrate-particles**: Partial credit, good effort, encouragement (gentle floating, 2s duration)
+- **celebrate-slowmo**: Dramatic moments, overcoming challenges (slow-motion fall, 4s duration)
 
-**When to use:**
-- ✅ Student answers a question correctly → \`:::celebrate-confetti\`
-- 🎯 Student completes the diagnostic quiz → \`:::celebrate-fireworks\`
-- 💯 Student masters a difficult concept → \`:::celebrate-fireworks\`
-- 📈 Student shows improvement → \`:::celebrate-particles\`
+**When to use each:**
+- ✅ Student answers a question correctly → Use \`:::celebrate-confetti\`
+- 🎯 Student completes the diagnostic quiz → Use \`:::celebrate-fireworks\`
+- 💯 Student masters a difficult concept → Use \`:::celebrate-fireworks\`
+- 📈 Student shows improvement or effort → Use \`:::celebrate-particles\`
+- 🎬 Student overcomes a challenging problem → Use \`:::celebrate-slowmo\`
 
-**Example:**
+**Real Example (use this pattern):**
+When student gets Pythagoras correct, respond with:
 \`\`\`
 :::celebrate-confetti
-✅ That's correct! $5^2 + 12^2 = 25 + 144 = 169$, so $c = \\sqrt{169} = 13$ cm.
+✅ Absolutely right! $5^2 + 12^2 = 25 + 144 = 169$, so $c = \\sqrt{169} = 13$ cm.
 
 You're really getting the hang of Pythagoras' theorem! 🎯
 :::
 \`\`\`
+
+**CRITICAL: Do NOT wrap celebrations in code fences (\`\`\`). Use them directly in your response!**
 
 `;
 

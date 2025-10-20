@@ -2,7 +2,7 @@ import React, { useEffect } from 'react';
 import confetti from 'canvas-confetti';
 
 interface CelebrationAnimationProps {
-  type?: 'confetti' | 'fireworks' | 'particles';
+  type?: 'confetti' | 'fireworks' | 'particles' | 'slowmo';
   autoplay?: boolean;
 }
 
@@ -63,6 +63,20 @@ export const CelebrationAnimation: React.FC<CelebrationAnimationProps> = ({
             gravity: 0.5,
             scalar: 0.8,
             duration: 2000,
+          });
+          break;
+
+        case 'slowmo':
+          // Slow-motion confetti - dramatic falling effect
+          await confetti({
+            particleCount: 80,
+            spread: 60,
+            origin: { y: 0.3 },
+            gravity: 0.3,
+            decay: 0.95,
+            ticks: 400,
+            scalar: 1.2,
+            drift: 0.5,
           });
           break;
       }

@@ -25,8 +25,9 @@ import { TooltipIconButton } from "@/components/assistant-ui/tooltip-icon-button
 import { cn } from "@/lib/utils";
 import rehypeRaw from "rehype-raw";
 import { rehypeDirectiveContainers } from "@/lib/rehype-directive-containers";
-import { rehypeCelebrationPlugin } from "@/lib/rehype-celebration";
 import { CelebrationAnimation } from "@/components/CelebrationAnimation";
+import { rehypeEmojiWrapper } from "@/lib/rehype-emoji-wrapper";
+import { remarkCelebrationPlugin } from "@/lib/remark-celebration";
 
 // Preprocess function to normalize LaTeX delimiters
 function normalizeCustomMathTags(input: string): string {
@@ -46,10 +47,11 @@ const MarkdownTextImpl = () => {
         remarkGfm,
         remarkMath,
         remarkDirective,
+        remarkCelebrationPlugin,
         remarkGithubBlockquoteAlert,
         remarkGeoGebraEmbedPlugin,
       ]}
-      rehypePlugins={[rehypeRaw, rehypeCelebrationPlugin, rehypeDirectiveContainers, rehypeGeoGebraEmbedPlugin, rehypeKatex]}
+      rehypePlugins={[rehypeRaw, rehypeDirectiveContainers, rehypeGeoGebraEmbedPlugin, rehypeEmojiWrapper, rehypeKatex]}
       preprocess={normalizeCustomMathTags}
       className="aui-md text-left"
       components={defaultComponents}
@@ -103,8 +105,8 @@ const defaultComponents = memoizeMarkdownComponents({
     GeoGebraEmbed: ({ templateId }: { templateId: string }) => (
       <GeoGebraEmbed templateId={templateId} />
     ),
-    'celebration-animation': ({ type, autoplay }: { type: string; autoplay: string }) => (
-      <CelebrationAnimation type={type as 'confetti' | 'fireworks' | 'particles'} autoplay={autoplay === 'true'} />
+    'celebration-animation': ({ type, autoplay }: { type: string; autoplay: boolean }) => (
+      <CelebrationAnimation type={type as 'confetti' | 'fireworks' | 'particles' | 'slowmo'} autoplay={autoplay} />
     ),
   } as any,
   svg: ({ className, ...props }) => (
