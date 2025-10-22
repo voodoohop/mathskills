@@ -23,10 +23,14 @@ import { MarkdownText } from "@/components/assistant-ui/markdown-text";
 import { ToolFallback } from "@/components/assistant-ui/tool-fallback";
 import { TooltipIconButton } from "@/components/assistant-ui/tooltip-icon-button";
 import { threadSuggestions } from "@/content/suggestions";
+import { DiagnosticProgressBar } from "@/components/DiagnosticProgressBar";
+import { useDiagnosticProgress } from "@/hooks/useDiagnosticProgress";
 
 import { cn } from "@/lib/utils";
 
 export const Thread: FC = () => {
+  const progress = useDiagnosticProgress();
+
   return (
     <LazyMotion features={domAnimation}>
       <MotionConfig reducedMotion="user">
@@ -36,6 +40,9 @@ export const Thread: FC = () => {
             ["--thread-max-width" as string]: "44rem",
           }}
         >
+          {/* Floating progress bar at top */}
+          <DiagnosticProgressBar progress={progress} position="top" />
+
           <ThreadPrimitive.Viewport className="aui-thread-viewport relative flex flex-1 flex-col overflow-x-auto overflow-y-scroll px-4">
             <ThreadPrimitive.If empty>
               <ThreadWelcome />
