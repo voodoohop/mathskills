@@ -13,9 +13,9 @@ import {
 import remarkGfm from "remark-gfm";
 import remarkMath from "remark-math";
 import rehypeKatex from "rehype-katex";
-import { remarkGeoGebraEmbedPlugin } from "@/lib/remark-geogebra-embed";
-import { rehypeGeoGebraEmbedPlugin } from "@/lib/rehype-geogebra-embed";
-import { GeoGebraEmbed } from "@/components/geogebra/GeoGebraEmbed";
+import { remarkJSXGraphPlugin } from "@/lib/remark-jsxgraph";
+import { rehypeJSXGraphPlugin } from "@/lib/rehype-jsxgraph";
+import { JSXGraphBoard } from "@/components/jsxgraph/JSXGraphBoard";
 import remarkDirective from "remark-directive";
 import remarkGithubBlockquoteAlert from "remark-github-blockquote-alert";
 import { type FC, memo, useState } from "react";
@@ -49,9 +49,9 @@ const MarkdownTextImpl = () => {
         remarkDirective,
         remarkCelebrationPlugin,
         remarkGithubBlockquoteAlert,
-        remarkGeoGebraEmbedPlugin,
+        remarkJSXGraphPlugin,
       ]}
-      rehypePlugins={[rehypeRaw, rehypeDirectiveContainers, rehypeGeoGebraEmbedPlugin, rehypeEmojiWrapper, rehypeKatex]}
+      rehypePlugins={[rehypeRaw, rehypeDirectiveContainers, rehypeJSXGraphPlugin, rehypeEmojiWrapper, rehypeKatex]}
       preprocess={normalizeCustomMathTags}
       className="aui-md text-left"
       components={defaultComponents}
@@ -102,8 +102,8 @@ const useCopyToClipboard = ({
 
 const defaultComponents = memoizeMarkdownComponents({
   ...{
-    GeoGebraEmbed: ({ templateId }: { templateId: string }) => (
-      <GeoGebraEmbed templateId={templateId} />
+    JSXGraphBoard: ({ code }: { code: string }) => (
+      <JSXGraphBoard code={code} />
     ),
     'celebration-animation': ({ type, autoplay }: { type: string; autoplay: boolean }) => (
       <CelebrationAnimation type={type as 'confetti' | 'fireworks' | 'particles' | 'slowmo'} autoplay={autoplay} />
