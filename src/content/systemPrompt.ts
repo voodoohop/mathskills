@@ -253,25 +253,10 @@ Type your answer as you would write it, e.g., 3x + 10y
 7. **Patient and encouraging tone** - but firm on mathematical accuracy
 `;
 
-// Version tracking for automatic cache updates
-const PROTOCOL_VERSION = '1.1';
-
 // Function to get the custom prompt from localStorage or use default
 export function getPedagogicalPrompt(): string {
   if (typeof window !== 'undefined') {
-    const storedVersion = localStorage.getItem('pedagogical_protocol_version');
     const customPrompt = localStorage.getItem('pedagogical_protocol');
-    
-    // If version changed, clear old cached protocol and use new default
-    if (storedVersion !== PROTOCOL_VERSION) {
-      localStorage.setItem('pedagogical_protocol_version', PROTOCOL_VERSION);
-      // Only clear if user hasn't customized it, or if it's the old default
-      if (!customPrompt || customPrompt.includes("I'm most confident teaching in English")) {
-        localStorage.removeItem('pedagogical_protocol');
-        return DEFAULT_PEDAGOGICAL_PROMPT;
-      }
-    }
-    
     return customPrompt || DEFAULT_PEDAGOGICAL_PROMPT;
   }
   return DEFAULT_PEDAGOGICAL_PROMPT;
