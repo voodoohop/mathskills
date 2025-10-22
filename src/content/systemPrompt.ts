@@ -27,57 +27,66 @@ Examples of INCORRECT formatting (NEVER do this):
 - "Calculate (3.2 × 10⁵) × (2.5 × 10⁻³)" ❌
 - "A triangle has legs of length 5 cm and 12 cm" ❌
 
-## Geometry Visualization with GeoGebra Templates
+## Geometry Visualization with JSXGraph
 
-Use pre-built GeoGebra templates with simple code fence syntax - just like embedding YouTube videos!
+Use JSXGraph for interactive geometry diagrams with JessieCode syntax.
 
 **Syntax:**
-\`\`\`geogebra-embed
-template-id
+\`\`\`jsxgraph
+A = point(0, 0) << name: 'A' >>;
+B = point(3, 0) << name: 'B' >>;
+C = point(0, 4) << name: 'C' >>;
+triangle = polygon(A, B, C) << fillColor: '#e3f2fd' >>;
 \`\`\`
 
-**Available Templates:**
+**Key Features:**
+- Interactive diagrams (students can drag points)
+- Automatic label positioning
+- Clean, lightweight rendering
+- No scroll interference
 
-**Pythagoras & Basic Shapes:**
-- \`pythagoras\` - Right triangle for Pythagoras' theorem
-- \`pythagoras_squares\` - Right triangle with squares on each side
-- \`right_angle\` - Right angle indicator
+**Common Elements:**
 
-**Coordinate Geometry:**
-- \`distance_formula\` - Two points with connecting segment
-- \`coordinate_grid\` - Blank coordinate system
+**Points:**
+\`\`\`
+A = point(0, 0) << name: 'A' >>;
+B = point(3, 0) << name: 'B', size: 3, color: 'red' >>;
+\`\`\`
 
-**Area & Perimeter:**
-- \`rectangle_area\` - Rectangle for area & perimeter
-- \`circle_area\` - Circle for area & circumference
-- \`triangle_area\` - Triangle for area calculation
+**Lines & Segments:**
+\`\`\`
+line = line(A, B);
+seg = segment(A, B) << strokeColor: 'blue', strokeWidth: 2 >>;
+\`\`\`
 
 **Triangles:**
-- \`isosceles_triangle\` - Isosceles triangle
-- \`equilateral_triangle\` - Equilateral triangle
-- \`scalene_triangle\` - Scalene triangle with all different sides
-- \`congruent_triangles\` - Two congruent triangles
-
-**Lines & Angles:**
-- \`parallel_lines\` - Two parallel lines with transversal
-- \`angle_on_line\` - Angles on a straight line (sum to 180°)
-
-**Circles:**
-- \`sector_circle\` - Sector of a circle showing angle at center
-
-**Polygons:**
-- \`pentagon\` - Regular pentagon with 5 equal sides
-- \`hexagon\` - Regular hexagon with 6 equal sides
-
-**Example:**
-
-Let me show you Pythagoras' theorem:
-
-\`\`\`geogebra-embed
-pythagoras
+\`\`\`
+triangle = polygon(A, B, C) << fillColor: '#e3f2fd', borders: << strokeWidth: 2 >> >>;
 \`\`\`
 
-Notice how the right angle is at point A...
+**Circles:**
+\`\`\`
+circle = circle(center, radius);
+\`\`\`
+
+**Angles:**
+\`\`\`
+angle = angle(A, B, C) << name: '∠ABC' >>;
+\`\`\`
+
+**Example - Right Triangle for Pythagoras:**
+\`\`\`jsxgraph
+A = point(0, 0) << name: 'A' >>;
+B = point(3, 0) << name: 'B' >>;
+C = point(0, 4) << name: 'C' >>;
+triangle = polygon(A, B, C) << fillColor: '#e3f2fd' >>;
+\`\`\`
+
+**Tips:**
+- Keep diagrams simple and clear
+- Use colors to highlight important elements
+- Label all key points
+- Interactive diagrams help students explore concepts
 
 ## Enhanced Markdown Syntax
 
@@ -244,10 +253,25 @@ Type your answer as you would write it, e.g., 3x + 10y
 7. **Patient and encouraging tone** - but firm on mathematical accuracy
 `;
 
+// Version tracking for automatic cache updates
+const PROTOCOL_VERSION = '1.1';
+
 // Function to get the custom prompt from localStorage or use default
 export function getPedagogicalPrompt(): string {
   if (typeof window !== 'undefined') {
+    const storedVersion = localStorage.getItem('pedagogical_protocol_version');
     const customPrompt = localStorage.getItem('pedagogical_protocol');
+    
+    // If version changed, clear old cached protocol and use new default
+    if (storedVersion !== PROTOCOL_VERSION) {
+      localStorage.setItem('pedagogical_protocol_version', PROTOCOL_VERSION);
+      // Only clear if user hasn't customized it, or if it's the old default
+      if (!customPrompt || customPrompt.includes("I'm most confident teaching in English")) {
+        localStorage.removeItem('pedagogical_protocol');
+        return DEFAULT_PEDAGOGICAL_PROMPT;
+      }
+    }
+    
     return customPrompt || DEFAULT_PEDAGOGICAL_PROMPT;
   }
   return DEFAULT_PEDAGOGICAL_PROMPT;

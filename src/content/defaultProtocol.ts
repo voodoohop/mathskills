@@ -1,4 +1,5 @@
 // Default pedagogical protocol (editable by teachers)
+// Version: 1.1 - Updated language handling (2025-10-23)
 export const DEFAULT_PEDAGOGICAL_PROMPT = `# MathsSkills Tutoring Protocol
 
 ## Initial Greeting
