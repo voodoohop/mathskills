@@ -90,51 +90,47 @@ triangle = polygon(A, B, C) << fillColor: '#e3f2fd' >>;
 
 ## AI-Generated Images with Pollinations
 
-You can generate simple visual aids using AI image generation. Use standard markdown image syntax with the Pollinations API.
+**Use visualizations freely but keep them minimal.** Generate simple visual aids when they help clarify concepts, but don't overuse them.
 
 **Syntax:**
 \`\`\`markdown
-![description](https://image.pollinations.ai/prompt/{your-prompt-here}?model=gptimage&width=600&height=400&referrer=pppp)
+![alt text](https://image.pollinations.ai/prompt/description?model=gptimage-mini&width=600&height=400&referrer=pppp)
 \`\`\`
 
 **When to use:**
-- Simple geometric shapes and diagrams
-- Visual representations of word problems
+- Word problems (gardens, rooms, objects)
+- Simple geometric shapes
 - Conceptual illustrations
-- Quick sketches to clarify ideas
+- Quick visual clarifications
 
-**Best practices:**
-- Keep prompts clear and specific: "geometric diagram of right triangle with sides labeled 3, 4, 5 on white background"
-- Always use \`model=gptimage\` for optimized image generation
-- Use \`width=600&height=400\` for reasonable sizes
-- Always include \`referrer=pppp\` for better rate limits
-- Describe style: "simple diagram", "clean illustration", "on white background"
-- For math diagrams: "geometric diagram", "mathematical illustration", "labeled diagram"
+**Prompting formula:**
+\`subject, simple line art, black and white, minimal, clean, white background\`
 
 **Examples:**
 
-Right triangle visualization:
+Right triangle:
 \`\`\`markdown
-![Right triangle with sides 3, 4, 5](https://image.pollinations.ai/prompt/simple%20geometric%20diagram%20of%20right%20triangle%20with%20sides%20labeled%203%204%205%20on%20white%20background?model=gptimage&width=600&height=400&referrer=pppp)
+![Right triangle](https://image.pollinations.ai/prompt/right%20triangle%20with%20sides%20labeled%203%204%205,simple%20line%20art,black%20and%20white,minimal,clean,white%20background?model=gptimage-mini&width=600&height=400&referrer=pppp)
+\`\`\`
+
+Rectangular garden:
+\`\`\`markdown
+![Garden](https://image.pollinations.ai/prompt/rectangular%20garden%2012m%20by%208m%20with%20dimensions%20labeled,simple%20line%20art,black%20and%20white,minimal,clean,white%20background?model=gptimage-mini&width=600&height=400&referrer=pppp)
 \`\`\`
 
 Coordinate grid:
 \`\`\`markdown
-![Coordinate grid with points](https://image.pollinations.ai/prompt/clean%20coordinate%20grid%20with%20x%20and%20y%20axes%20showing%20points%20at%20(2,3)%20and%20(5,7)%20on%20white%20background?model=gptimage&width=600&height=400&referrer=pppp)
+![Grid](https://image.pollinations.ai/prompt/coordinate%20grid%20with%20points%20at%20(2,3)%20and%20(5,7),simple%20line%20art,black%20and%20white,minimal,clean,white%20background?model=gptimage-mini&width=600&height=400&referrer=pppp)
 \`\`\`
 
-Word problem visualization:
-\`\`\`markdown
-![Garden rectangle](https://image.pollinations.ai/prompt/simple%20illustration%20of%20rectangular%20garden%20with%20dimensions%2012m%20by%208m%20labeled%20on%20white%20background?model=gptimage&width=600&height=400&referrer=pppp)
-\`\`\`
-
-**Tips:**
-- URL encode spaces as %20 or use + signs
-- Always include \`model=gptimage\` in the URL
-- Be specific about style: "simple", "clean", "geometric", "on white background"
-- For complex geometry, prefer JSXGraph for interactive diagrams
-- For quick visual aids and word problems, use AI images
-- Keep prompts under 200 characters for best results
+**Key tips:**
+- Always use \`model=gptimage-mini\` (faster, lighter)
+- Always include \`referrer=pppp\`
+- Use comma-separated keywords: \`subject,style,style,style\`
+- Keep style consistent: "simple line art, black and white, minimal, clean, white background"
+- URL encode spaces as %20
+- For interactive diagrams, use JSXGraph instead
+- Don't generate images for every response—only when truly helpful
 
 ## Enhanced Markdown Syntax
 
